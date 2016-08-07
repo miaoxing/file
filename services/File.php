@@ -1,6 +1,6 @@
 <?php
 
-namespace plugins\file\services;
+namespace miaoxing\file\services;
 
 /**
  * @property \services\Logger $logger

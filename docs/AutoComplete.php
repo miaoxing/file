@@ -1,9 +1,9 @@
 <?php
 
-namespace plugins\file\docs {
+namespace miaoxing\file\docs {
     /**
-     * @property    \plugins\file\services\File $file 文件存储服务
-     * @method      \plugins\file\services\File|\plugins\file\services\File[] file()
+     * @property    \miaoxing\file\services\File $file 文件存储服务
+     * @method      \miaoxing\file\services\File|\miaoxing\file\services\File[] file()
      */
     class AutoComplete
     {
@@ -12,7 +12,7 @@ namespace plugins\file\docs {
 
 namespace {
     /**
-     * @return \plugins\file\docs\AutoComplete
+     * @return \miaoxing\file\docs\AutoComplete
      */
     function wei()
     {

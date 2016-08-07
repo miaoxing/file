@@ -1,6 +1,6 @@
 <?php
 
-namespace plugins\file\controllers\admin;
+namespace miaoxing\file\controllers\admin;
 
 use plugins\category\controllers\admin\Category;
 
