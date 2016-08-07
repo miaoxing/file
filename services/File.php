@@ -320,4 +320,14 @@ class File extends \miaoxing\plugin\BaseModel
     {
         return in_array($ext, $this->imageExts);
     }
+
+    /**
+     * 获取图片的扩展名
+     *
+     * @return array
+     */
+    public function getImageExts()
+    {
+        return $this->imageExts;
+    }
 }
