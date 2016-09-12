@@ -33,11 +33,18 @@ class File extends \miaoxing\plugin\BaseModel
 
     /**
      * 图片类型的扩展名
-     *
      * @var array
      */
     protected $imageExts = [
         'jpg', 'jpeg', 'png', 'bmp', 'gif'
+    ];
+
+    /**
+     * 特殊需转换的语音类型的扩展名
+     * @var array
+     */
+    protected $voiceExts = [
+        'amr'
     ];
 
     protected $fileType = [
@@ -329,5 +336,26 @@ class File extends \miaoxing\plugin\BaseModel
     public function getImageExts()
     {
         return $this->imageExts;
+    }
+
+    /**
+     * 检查扩展名是否为需转换语音类型
+     *
+     * @param string $ext
+     * @return bool
+     */
+    public function isVoiceExt($ext)
+    {
+        return in_array($ext, $this->voiceExts);
+    }
+
+    /**
+     * 获取需转换语音类型的扩展名
+     *
+     * @return array
+     */
+    public function getVoiceExts()
+    {
+        return $this->voiceExts;
     }
 }
