@@ -161,6 +161,8 @@ class File extends \miaoxing\plugin\BaseModel
             return ['code' => -1, 'message' => sprintf('文件%s下载失败', $file)];
         }
 
+        $localFile = $this->transform($file, $ext, $localFile);
+
         // 附加CDN域名到图片地址上
         if ($path = wei()->ueditor->getImagePath()) {
             $url = $path . '/' . $localFile;
@@ -174,6 +176,30 @@ class File extends \miaoxing\plugin\BaseModel
             'url' => $url,
             'originalName' => $this->getFileName($file),
         ];
+    }
+
+    /**
+     *   文件格式转换
+     * @param string $file 远程文件url
+     * @param string $ext 文件扩展名
+     * @param string $localFile 本地服务器文件路径
+     * @return mixed
+     */
+    public function transform($file, $ext, $localFile)
+    {
+        // 如果是语音文件，则进行文件转换
+        if ($this->isVoiceExt($this->getExt($file, $ext))) {
+            $amr = $localFile;
+            $mp3 = str_replace('.' . $ext, ".mp3", $localFile);
+
+            if (!file_exists($mp3)) {
+                $command = "/usr/local/bin/ffmpeg -i $amr $mp3";
+                system($command, $error);
+            }
+            $localFile = $mp3;
+        }
+
+        return $localFile;
     }
 
     /**
