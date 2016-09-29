@@ -28,7 +28,7 @@ class File extends \miaoxing\plugin\BaseModel
      * {@inheritdoc}
      */
     protected $providers = [
-        'db' => 'app.db'
+        'db' => 'app.db',
     ];
 
     /**
@@ -36,7 +36,7 @@ class File extends \miaoxing\plugin\BaseModel
      * @var array
      */
     protected $imageExts = [
-        'jpg', 'jpeg', 'png', 'bmp', 'gif'
+        'jpg', 'jpeg', 'png', 'bmp', 'gif',
     ];
 
     /**
@@ -44,7 +44,7 @@ class File extends \miaoxing\plugin\BaseModel
      * @var array
      */
     protected $voiceExts = [
-        'amr'
+        'amr',
     ];
 
     protected $fileType = [
@@ -95,15 +95,15 @@ class File extends \miaoxing\plugin\BaseModel
 
         $this->setAppId()->save([
             'name' => basename($ret['url']),
-            'originalName' => (string)$ret['originalName'],
+            'originalName' => (string) $ret['originalName'],
             'path' => $path,
             'url' => $ret['url'],
             'ext' => $this->getExt($ret['url']),
             'type' => static::TYPE_IMAGE, // 暂时都是图片
-            'size' => (int)$ret['size'],
-            'width' => (int)$ret['width'],
-            'height' => (int)$ret['height'],
-            'md5' => (string)$ret['md5'],
+            'size' => (int) $ret['size'],
+            'width' => (int) $ret['width'],
+            'height' => (int) $ret['height'],
+            'md5' => (string) $ret['md5'],
         ]);
 
         return $this;
@@ -190,7 +190,7 @@ class File extends \miaoxing\plugin\BaseModel
         // 如果是语音文件，则进行文件转换
         if ($this->isVoiceExt($this->getExt($file, $ext))) {
             $amr = $localFile;
-            $mp3 = str_replace('.' . $ext, ".mp3", $localFile);
+            $mp3 = str_replace('.' . $ext, '.mp3', $localFile);
 
             if (!file_exists($mp3)) {
                 $command = "/usr/local/bin/ffmpeg -i $amr $mp3";
@@ -217,6 +217,7 @@ class File extends \miaoxing\plugin\BaseModel
         if ($host) {
             $file = $this->download($file, $ext, $path, $customName);
         }
+
         return $file;
     }
 
@@ -232,6 +233,7 @@ class File extends \miaoxing\plugin\BaseModel
         // 1. 如果是/开头,认为是当前目录中的素材
         if ($file[0] == '/') {
             $file = ltrim($file, '/');
+
             return $file;
         }
 
@@ -302,6 +304,7 @@ class File extends \miaoxing\plugin\BaseModel
 
         // 3. 保存文件并返回
         file_put_contents($file, $http->getResponse());
+
         return $file;
     }
 
