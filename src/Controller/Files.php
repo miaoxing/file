@@ -1,8 +1,8 @@
 <?php
 
-namespace miaoxing\file\controllers;
+namespace Miaoxing\File\Controller;
 
-use miaoxing\file\services\File;
+use Miaoxing\File\Service\File;
 
 class Files extends \miaoxing\plugin\BaseController
 {

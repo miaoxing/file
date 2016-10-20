@@ -1,6 +1,6 @@
 <?php
 
-namespace miaoxing\file;
+namespace Miaoxing\File;
 
 class Plugin extends \miaoxing\plugin\BasePlugin
 {

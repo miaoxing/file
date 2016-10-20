@@ -2,8 +2,8 @@
 
 namespace miaoxing\file\docs {
     /**
-     * @property    \miaoxing\file\services\File $file 文件存储服务
-     * @method      \miaoxing\file\services\File|\miaoxing\file\services\File[] file()
+     * @property    \Miaoxing\File\Service\File $file 文件存储服务
+     * @method      \Miaoxing\File\Service\File|\Miaoxing\File\Service\File[] file()
      */
     class AutoComplete
     {
