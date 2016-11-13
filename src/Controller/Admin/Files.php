@@ -21,7 +21,7 @@ class Files extends \miaoxing\plugin\BaseController
     public function indexAction($req)
     {
         switch ($req['_format']) {
-            case 'json' :
+            case 'json':
                 $files = wei()->file()->curApp()->andWhere(['type' => File::TYPE_FILE]);
 
                 // 分页
@@ -41,11 +41,11 @@ class Files extends \miaoxing\plugin\BaseController
 
                 wei()->event->trigger('beforeFileFind', [$files, $req]);
 
-                $data = array();
+                $data = [];
                 foreach ($files->findAll() as $file) {
                     $data[] = $file->toArray() + [
                             'name' => $file['originalName'],
-                            'categoryName' => $file['categoryId'] ? wei()->category()->findOneById($file['categoryId'])->get('name') : ''
+                            'categoryName' => $file['categoryId'] ? wei()->category()->findOneById($file['categoryId'])->get('name') : '',
                         ];
                 }
 
@@ -57,7 +57,7 @@ class Files extends \miaoxing\plugin\BaseController
                     'records' => $files->count(),
                 ]);
 
-            default :
+            default:
                 return get_defined_vars();
         }
     }
@@ -74,7 +74,7 @@ class Files extends \miaoxing\plugin\BaseController
             'name' => '文件',
             'exts' => $this->exts,
             'postMaxSize' => 20 * 1024 * 1024,
-            'dir' => wei()->upload->getDir() . '/files/' . date('Ymd')
+            'dir' => wei()->upload->getDir() . '/files/' . date('Ymd'),
         ]);
 
         if (!$result) {
@@ -100,6 +100,7 @@ class Files extends \miaoxing\plugin\BaseController
     {
         $file = wei()->file()->findId($req['id']);
         $file['file'] = $file['path'];
+
         return get_defined_vars();
     }
 
@@ -117,6 +118,7 @@ class Files extends \miaoxing\plugin\BaseController
     public function destroyAction($req)
     {
         wei()->file()->findOneById($req['id'])->destroy();
+
         return $this->suc();
     }
 
@@ -124,6 +126,7 @@ class Files extends \miaoxing\plugin\BaseController
     {
         $file = wei()->file()->curApp()->findOneById($req['id']);
         $ret = wei()->audit->audit($file, $req['pass'], $req['description']);
+
         return $this->ret($ret);
     }
 }
