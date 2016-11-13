@@ -106,9 +106,9 @@ class Files extends \miaoxing\plugin\BaseController
     public function updateAction($req)
     {
         wei()->file()->curApp()->findId($req['id'])->save([
-            'categoryId' => $req['categoryId'],
-            'startTime' => $req['startTime'],
-            'endTime' => $req['endTime'],
+            'categoryId' => (int) $req['categoryId'],
+            'startTime' => (string) $req['startTime'],
+            'endTime' => (string) $req['endTime'],
         ]);
 
         return $this->suc();
