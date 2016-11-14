@@ -2,7 +2,7 @@
 
 namespace Miaoxing\File\Controller\Admin;
 
-use plugins\category\controllers\admin\Category;
+use Miaoxing\Category\Controller\Admin\Category;
 
 class FileCategories extends Category
 {
