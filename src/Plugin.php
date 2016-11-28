@@ -10,7 +10,7 @@ class Plugin extends \miaoxing\plugin\BasePlugin
 
     public function onAdminNavGetNavs(&$navs, &$categories, &$subCategories)
     {
-        if(wei()->app->getNamespace() == 'plst') {
+        if (wei()->app->getNamespace() == 'plst') {
             $subCategories['app-file'] = [
                 'parentId' => 'app',
                 'name' => '文件管理',

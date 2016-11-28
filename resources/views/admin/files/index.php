@@ -40,7 +40,7 @@
         <tr>
           <th class="t-8">栏目名称</th>
           <th>文件名</th>
-          <th class="t-9">有效时间</th>
+          <th class="t-10">有效时间</th>
           <th class="t-4">类型</th>
           <th class="t-6">大小(KB)</th>
           <th class="t-9">修改时间</th>
@@ -63,7 +63,8 @@
 <?= $block('js') ?>
 <script>
   require(['form', 'dataTable', 'jquery-deparam', 'template'], function (form) {
-    form.toOptions($('#categoryId'), <?= json_encode(wei()->category()->notDeleted()->withParent('file')->getTreeToArray()) ?>, 'id', 'name');
+    var categoryJson = <?= json_encode(wei()->category()->notDeleted()->withParent('file')->getTreeToArray()) ?>;
+    form.toOptions($('#category-id'), categoryJson, 'id', 'name');
 
     $('#search-form').loadParams().update(function () {
       recordTable.reload($(this).serialize(), false);
@@ -83,8 +84,10 @@
         },
         {
           data: 'ext',
-          render: function(data, type, full) {
-            return full.startTime.replace(/-/g, '.').substr(0, 10) + '~' + full.endTime.replace(/-/g, '.').substr(0, 10);
+          render: function (data, type, full) {
+            var timeRange = full.startTime.replace(/-/g, '.').substr(0, 10);
+            timeRange += '~' + full.endTime.replace(/-/g, '.').substr(0, 10);
+            return timeRange;
           }
         },
         {
@@ -92,7 +95,7 @@
         },
         {
           data: 'size',
-          render: function(data, type, full) {
+          render: function (data, type, full) {
             return (data / 1024).toFixed(2);
           }
         },
