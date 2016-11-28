@@ -23,7 +23,7 @@
         </label>
 
         <div class="col-lg-4">
-          <select id="categoryId" name="categoryId" class="form-control">
+          <select id="category-id" name="categoryId" class="form-control">
             <option value="">选择栏目</option>
           </select>
         </div>
@@ -36,8 +36,11 @@
         </label>
 
         <div class="col-lg-4">
-          <input type="file" class="file" name="file" id="file" data-rule-required="true" data-show-upload="false"
-                 <?= !$file->isNew() ? 'disabled="true"' : '' ?>">
+          <?php if(!$file->isNew()):?>
+          <input type="file" class="file" name="file" data-rule-required="true" data-show-upload="false" disabled="true">
+          <?php else:?>
+          <input type="file" class="file" name="file" data-rule-required="true" data-show-upload="false">
+          <?php endif;?>
         </div>
 
         <label class="col-lg-6 help-text" for="no">
@@ -52,7 +55,7 @@
 
         <div class="col-lg-4">
           <div>
-            <input type="text" class="form-control js-start-time" name="startTime" style="position: relative; z-index: 1000;">
+            <input type="text" class="form-control js-start-time" name="startTime">
           </div>
         </div>
       </div>
@@ -64,7 +67,7 @@
 
         <div class="col-lg-4">
           <div>
-            <input type="text" class="form-control js-end-time" name="endTime" style="position: relative; z-index: 1000;">
+            <input type="text" class="form-control js-end-time" name="endTime">
           </div>
         </div>
       </div>
@@ -99,7 +102,7 @@
     'css!comps/bootstrap-fileinput/css/fileinput.min',
     'comps/bootstrap-fileinput/js/fileinput.min'
   ], function (form) {
-    form.toOptions($('#categoryId'), <?= json_encode(wei()->category()->notDeleted()->withParent('file')->getTreeToArray()) ?>, 'id', 'name');
+    form.toOptions($('#category-id'), <?= json_encode(wei()->category()->notDeleted()->withParent('file')->getTreeToArray()) ?>, 'id', 'name');
     var file = <?= $file->toJson(); ?>;
     $('.js-file-form')
       .loadJSON(file)

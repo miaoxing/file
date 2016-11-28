@@ -24,7 +24,7 @@
         </label>
 
         <div class="col-lg-4">
-          <select name="parentId" id="parentId" class="form-control">
+          <select name="parentId" id="parent-id" class="form-control">
             <option value="file">根栏目</option>
           </select>
         </div>
@@ -90,7 +90,7 @@
 <?= $block('js') ?>
 <script>
   require(['form', 'ueditor', 'jquery-deparam', 'dataTable', 'validator'], function (form) {
-    form.toOptions($('#parentId'), <?= json_encode(wei()->category()->notDeleted()->withParent('file')->getTreeToArray()) ?>, 'id', 'name');
+    form.toOptions($('#parent-id'), <?= json_encode(wei()->category()->notDeleted()->withParent('file')->getTreeToArray()) ?>, 'id', 'name');
 
     var category = <?= $category->toJson() ?>;
 
