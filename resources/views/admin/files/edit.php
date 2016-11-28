@@ -36,11 +36,11 @@
         </label>
 
         <div class="col-lg-4">
-          <?php if(!$file->isNew()):?>
+          <?php if (!$file->isNew()):?>
           <input type="file" class="file" name="file" data-rule-required="true" data-show-upload="false" disabled="true">
           <?php else:?>
           <input type="file" class="file" name="file" data-rule-required="true" data-show-upload="false">
-          <?php endif;?>
+          <?php endif; ?>
         </div>
 
         <label class="col-lg-6 help-text" for="no">
