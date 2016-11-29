@@ -387,4 +387,13 @@ class File extends \miaoxing\plugin\BaseModel
     {
         return $this->voiceExts;
     }
+
+    /**
+     * 获取文件类别对象
+     * @return $this|bool
+     */
+    public function getCategory()
+    {
+        return $this['categoryId'] ? wei()->category()->findOneById($this['categoryId']) : false;
+    }
 }

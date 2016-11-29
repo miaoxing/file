@@ -15,7 +15,7 @@
         <div class="well form-well m-b">
           <div class="form-group form-group-sm">
 
-            <label class="col-md-1 control-label" for="categoryId">栏目：</label>
+            <label class="col-md-1 control-label" for="category-id">栏目：</label>
 
             <div class="col-md-3">
               <select class="form-control" name="categoryId" id="category-id">

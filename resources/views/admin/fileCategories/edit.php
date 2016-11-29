@@ -19,7 +19,7 @@
     <form id="category-form" class="form-horizontal" method="post" role="form">
 
       <div class="form-group">
-        <label class="col-lg-2 control-label" for="parentId">
+        <label class="col-lg-2 control-label" for="parent-id">
           所属栏目
         </label>
 

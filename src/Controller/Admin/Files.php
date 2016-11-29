@@ -43,10 +43,10 @@ class Files extends \miaoxing\plugin\BaseController
 
                 $data = [];
                 foreach ($files->findAll() as $file) {
-                    $cn = $file['categoryId'] ? wei()->category()->findOneById($file['categoryId'])['name'] : '';
+                    $category = $file->getCategory();
                     $data[] = $file->toArray() + [
                             'name' => $file['originalName'],
-                            'categoryName' => $cn,
+                            'categoryName' => $category ? $category['name'] : '',
                         ];
                 }
 

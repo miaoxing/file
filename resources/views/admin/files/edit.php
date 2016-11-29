@@ -18,7 +18,7 @@
     <!-- PAGE CONTENT BEGINS -->
     <form id="file-form" class="js-file-form form-horizontal" method="post" role="form">
       <div class="form-group">
-        <label class="col-lg-2 control-label" for="categoryId">
+        <label class="col-lg-2 control-label" for="category-id">
           栏目
         </label>
 
@@ -30,49 +30,40 @@
       </div>
 
       <div class="form-group">
-        <label class="col-lg-2 control-label" for="title">
+        <label class="col-lg-2 control-label" for="file">
           <span class="text-warning">*</span>
           选择文件
         </label>
 
         <div class="col-lg-4">
-          <?php if (!$file->isNew()) {
-    ?>
-            <input type="file" class="file" name="file" data-rule-required="true" data-show-upload="false"
-              disabled="true">
-          <?php 
-} else {
-    ?>
-            <input type="file" class="file" name="file" data-rule-required="true" data-show-upload="false">
-          <?php 
-} ?>
+          <input type="file" class="file" name="file" id="file" data-rule-required="true" data-show-upload="false">
         </div>
 
-        <label class="col-lg-6 help-text" for="no">
+        <label class="col-lg-6 help-text" for="file">
           支持txt, xml, pdf, zip, doc, ppt, xls, docx, pptx, xlsx格式
         </label>
       </div>
 
       <div class="form-group">
-        <label class="col-lg-2 control-label" for="startTime">
+        <label class="col-lg-2 control-label" for="start-time">
           开始时间
         </label>
 
         <div class="col-lg-4">
           <div>
-            <input type="text" class="form-control js-start-time" name="startTime">
+            <input type="text" class="form-control js-start-time" name="startTime" id="start-time">
           </div>
         </div>
       </div>
 
       <div class="form-group">
-        <label class="col-lg-2 control-label" for="endTime">
+        <label class="col-lg-2 control-label" for="end-time">
           结束时间
         </label>
 
         <div class="col-lg-4">
           <div>
-            <input type="text" class="form-control js-end-time" name="endTime">
+            <input type="text" class="form-control js-end-time" name="endTime" id="end-time">
           </div>
         </div>
       </div>
@@ -133,9 +124,13 @@
       dateFormat: 'yy-mm-dd'
     });
 
-    // 说动初始化
     var $caption = $('.js-file-form').find('.file-caption-name');
     $caption.html('<?= $file['id'] ? $file['path'] : '' ?>');
+
+    // 不可编辑已有的文件路径
+    <?php if (!$file->isNew()) { ?>
+    $('#file').attr('disabled', true);
+    <?php } ?>
   });
 </script>
 <?= $block->end() ?>
