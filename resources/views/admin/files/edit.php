@@ -132,6 +132,7 @@
     ?>
     $('#file').attr('disabled', true);
     <?php
+
 } ?>
   });
 </script>
