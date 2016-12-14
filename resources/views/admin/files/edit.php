@@ -72,7 +72,7 @@
 
       <div class="clearfix form-actions form-group">
         <div class="col-lg-offset-2">
-          <button class="btn btn-info" type="submit">
+          <button class="btn btn-primary" type="submit">
             <i class="fa fa-check bigger-110"></i>
             保存
           </button>
@@ -131,7 +131,7 @@
     <?php if (!$file->isNew()) {
     ?>
     $('#file').attr('disabled', true);
-    <?php 
+    <?php
 } ?>
   });
 </script>
