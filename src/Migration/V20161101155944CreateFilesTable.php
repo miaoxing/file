@@ -11,7 +11,7 @@ class V20161101155944CreateFilesTable extends BaseMigration
      */
     public function up()
     {
-        $this->scheme->table('files')
+        $this->schema->table('files')
             ->id()
             ->int('appId')
             ->int('categoryId')
@@ -39,6 +39,6 @@ class V20161101155944CreateFilesTable extends BaseMigration
      */
     public function down()
     {
-        $this->scheme->dropIfExists('files');
+        $this->schema->dropIfExists('files');
     }
 }
