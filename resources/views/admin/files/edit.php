@@ -128,12 +128,9 @@
     $caption.html('<?= $file['id'] ? $file['path'] : '' ?>');
 
     // 不可编辑已有的文件路径
-    <?php if (!$file->isNew()) {
-    ?>
-    $('#file').attr('disabled', true);
-    <?php
-
-} ?>
+    <?php if (!$file->isNew()) : ?>
+      $('#file').attr('disabled', true);
+    <?php endif ?>
   });
 </script>
 <?= $block->end() ?>
