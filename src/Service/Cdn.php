@@ -73,7 +73,7 @@ class Cdn extends \miaoxing\plugin\BaseService
         // 检查是否为图片
         $ext = wei()->file->getExt($url);
         if (!in_array($ext, $this->exts)) {
-            $this->logger->info('Invalid image extension: ' . $url);
+            $this->logger->info('Ignore invalid image extension', ['url' =>  $url]);
             return $ori;
         }
 
