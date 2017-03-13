@@ -30,7 +30,7 @@ class V20161101155944CreateFilesTable extends BaseMigration
             ->datetime('endTime')
             ->bool('passed')
             ->bool('audit')
-            ->timestamps()
+            ->timestampsV1()
             ->exec();
     }
 
