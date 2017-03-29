@@ -130,4 +130,35 @@ class Files extends \miaoxing\plugin\BaseController
 
         return $this->ret($ret);
     }
+
+    /**
+     * 图片上传返回链接
+     * @param $req
+     * @return array
+     */
+    public function imageUploadAction($req)
+    {
+        $upload = wei()->upload;
+        $result = $upload([
+            'name' => '图片',
+            'exts' => ['gif', 'png', 'jpg', 'jpeg', 'bmp'],
+            'postMaxSize' => 2 * 1024 * 1024,
+            'dir' => wei()->upload->getDir() . '/images/' . $this->app->getId() . '/' . date('Ymd'),
+        ]);
+
+        if (!$result) {
+            return $this->err($upload->getFirstMessage());
+        }
+
+        $req['file'] = $upload->getFile();
+        $ret = wei()->file->upload($req['file']);
+        if ($ret['fileId']) {
+            $file = wei()->file()->curApp()->findOneById($ret['fileId']);
+            $file->save([
+                'type' => File::TYPE_IMAGE,
+            ]);
+        }
+
+        return $this->ret($ret);
+    }
 }
