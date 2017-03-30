@@ -143,7 +143,8 @@ class Files extends \miaoxing\plugin\BaseController
             'name' => '图片',
             'exts' => ['gif', 'png', 'jpg', 'jpeg', 'bmp'],
             'postMaxSize' => 2 * 1024 * 1024,
-            'dir' => wei()->upload->getDir() . '/images/' . $this->app->getId() . '/' . date('Ymd'),
+            'dir' => wei()->upload->getDir() . '/' . $this->app->getId() . '/' . date('Ymd'),
+            'fileName' => time() . rand(1, 10000),
         ]);
 
         if (!$result) {
