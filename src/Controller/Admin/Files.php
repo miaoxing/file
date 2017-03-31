@@ -14,7 +14,7 @@ class Files extends \miaoxing\plugin\BaseController
         'edit,update' => '编辑',
         'destroy' => '删除',
         'audit' => '审核',
-        'imageUpload' => '图片上传'
+        'imageUpload' => '图片上传',
     ];
 
     protected $exts = ['txt', 'xml', 'pdf', 'zip', 'doc', 'ppt', 'docx', 'pptx', 'xls', 'xlsx'];
