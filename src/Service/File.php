@@ -3,7 +3,7 @@
 namespace Miaoxing\File\Service;
 
 /**
- * @property \services\Logger $logger
+ * @property \Miaoxing\App\Service\Logger $logger
  */
 class File extends \miaoxing\plugin\BaseModel
 {
