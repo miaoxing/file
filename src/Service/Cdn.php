@@ -8,7 +8,7 @@ namespace Miaoxing\File\Service;
 class Cdn extends \miaoxing\plugin\BaseService
 {
     protected $exts = [
-        'jpg', 'jpeg', 'gif', 'png', 'bmp'
+        'jpg', 'jpeg', 'gif', 'png', 'bmp',
     ];
 
     protected $hosts = [];
@@ -67,13 +67,15 @@ class Cdn extends \miaoxing\plugin\BaseService
 
         if (!$url) {
             $this->logger->info('Empty url: ' . $ori);
+
             return $ori;
         }
 
         // 检查是否为图片
         $ext = wei()->file->getExt($url);
         if (!in_array($ext, $this->exts)) {
-            $this->logger->info('Ignore invalid image extension', ['url' =>  $url]);
+            $this->logger->info('Ignore invalid image extension', ['url' => $url]);
+
             return $ori;
         }
 
@@ -91,6 +93,7 @@ class Cdn extends \miaoxing\plugin\BaseService
                 'from' => $url,
                 'to' => $newUrl,
             ]);
+
             return str_replace($url, $newUrl, $ori);
         }
 
@@ -105,6 +108,7 @@ class Cdn extends \miaoxing\plugin\BaseService
             'from' => $url,
             'to' => $newUrl,
         ]);
+
         return str_replace($url, $newUrl, $ori);
     }
 
@@ -134,6 +138,7 @@ class Cdn extends \miaoxing\plugin\BaseService
         }
         $file = $dir . time() . rand(1, 10000) . '.' . wei()->file->getExt($remoteFile);
         file_put_contents($file, $http->getResponse());
+
         return $file;
     }
 
@@ -156,7 +161,7 @@ class Cdn extends \miaoxing\plugin\BaseService
             'method' => 'post',
             'data' => [
                 'upfile' => $remoteFile,
-            ]
+            ],
         ]);
 
         if (!$http->isSuccess()) {
@@ -168,6 +173,7 @@ class Cdn extends \miaoxing\plugin\BaseService
                 'url' => $remoteFile,
                 'response' => $http->getResponse(),
             ]);
+
             return false;
         }
 
@@ -185,6 +191,7 @@ class Cdn extends \miaoxing\plugin\BaseService
         if (is_array($content)) {
             return array_map([$this, __METHOD__], $content);
         }
+
         return strtr($content, [$this->realUrl => $this->virtualUrl]);
     }
 
