@@ -124,6 +124,11 @@ class Files extends \miaoxing\plugin\BaseController
         return $this->suc();
     }
 
+    public function deleteAction($req)
+    {
+        return $this->suc();
+    }
+
     public function auditAction($req)
     {
         $file = wei()->file()->curApp()->findOneById($req['id']);
