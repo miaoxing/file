@@ -12,7 +12,7 @@ class Files extends \miaoxing\plugin\BaseController
         'index' => '列表',
         'new,create' => '添加',
         'edit,update' => '编辑',
-        'destroy' => '删除',
+        'destroy,delete' => '删除',
         'audit' => '审核',
         'imageUpload' => '图片上传',
     ];
@@ -126,6 +126,8 @@ class Files extends \miaoxing\plugin\BaseController
 
     public function deleteAction($req)
     {
+        wei()->file()->curApp()->andWhere(['url' => $req['url']])->delete();
+
         return $this->suc();
     }
 
