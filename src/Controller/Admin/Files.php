@@ -126,8 +126,6 @@ class Files extends \miaoxing\plugin\BaseController
 
     public function deleteAction($req)
     {
-        wei()->file()->curApp()->andWhere(['url' => $req['url']])->delete();
-
         return $this->suc();
     }
 
