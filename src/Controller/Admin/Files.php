@@ -145,17 +145,22 @@ class Files extends \miaoxing\plugin\BaseController
     public function imageUploadAction($req)
     {
         $upload = wei()->upload;
+        $dir = wei()->upload->getDir() . '/' . $this->app->getId() . '/' . date('Ymd');
         $result = $upload([
             'name' => '图片',
             'exts' => ['gif', 'png', 'jpg', 'jpeg', 'bmp'],
             'postMaxSize' => 2 * 1024 * 1024,
-            'dir' => wei()->upload->getDir() . '/' . $this->app->getId() . '/' . date('Ymd'),
+            'dir' => $dir,
             'fileName' => time() . rand(1, 10000),
         ]);
 
         if (!$result) {
             return $this->err($upload->getFirstMessage());
         }
+
+        // TODO 由upload服务处理
+        // 允许其他用户访问,如nginx用户
+        chmod($dir, 0777);
 
         $req['file'] = $upload->getFile();
         $ret = wei()->file->upload($req['file']);
