@@ -188,6 +188,10 @@ class Cdn extends \miaoxing\plugin\BaseService
      */
     public function convertToVirtualUrl($content)
     {
+        // 如果替换的key为空,strtr会返回false
+        if (!$this->realUrl) {
+            return $content;
+        }
         if (is_array($content)) {
             return array_map([$this, __METHOD__], $content);
         }
