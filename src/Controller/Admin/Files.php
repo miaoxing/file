@@ -4,7 +4,7 @@ namespace Miaoxing\File\Controller\Admin;
 
 use Miaoxing\File\Service\File;
 
-class Files extends \miaoxing\plugin\BaseController
+class Files extends \Miaoxing\Plugin\BaseController
 {
     protected $controllerName = '文件管理';
 

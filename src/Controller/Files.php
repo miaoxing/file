@@ -4,7 +4,7 @@ namespace Miaoxing\File\Controller;
 
 use Miaoxing\File\Service\File;
 
-class Files extends \miaoxing\plugin\BaseController
+class Files extends \Miaoxing\Plugin\BaseController
 {
     public function indexAction($req)
     {
