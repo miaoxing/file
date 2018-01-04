@@ -5,7 +5,7 @@ namespace Miaoxing\File\Service;
 /**
  * @property \Miaoxing\App\Service\Logger $logger
  */
-class File extends \miaoxing\plugin\BaseModel
+class File extends \Miaoxing\Plugin\BaseModel
 {
     const TYPE_IMAGE = 1;
     const TYPE_FILE = 2;
