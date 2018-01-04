@@ -5,7 +5,7 @@ namespace Miaoxing\File\Service;
 /**
  * @property \Miaoxing\App\Service\Logger $logger
  */
-class Cdn extends \miaoxing\plugin\BaseService
+class Cdn extends \Miaoxing\Plugin\BaseService
 {
     protected $exts = [
         'jpg', 'jpeg', 'gif', 'png', 'bmp',
