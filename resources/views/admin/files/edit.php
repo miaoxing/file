@@ -90,7 +90,7 @@
 </div><!-- /.col -->
 <!-- /.row -->
 
-<?= $block('js') ?>
+<?= $block->js() ?>
 <script>
   require([
     'form', 'validator', 'jquery-deparam',

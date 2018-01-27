@@ -1,6 +1,6 @@
 <?php $view->layout() ?>
 
-<?= $block('css') ?>
+<?= $block->css() ?>
 <link rel="stylesheet" href="<?= $asset('plugins/admin/css/filter.css') ?>"/>
 <?= $block->end() ?>
 
@@ -60,7 +60,7 @@
 <!-- /row -->
 <?php require $view->getFile('file:admin/files/actions.php'); ?>
 
-<?= $block('js') ?>
+<?= $block->js() ?>
 <script>
   require(['form', 'dataTable', 'jquery-deparam', 'template'], function (form) {
     var categoryJson = <?= json_encode(wei()->category()->notDeleted()->withParent('file')->getTreeToArray()) ?>;

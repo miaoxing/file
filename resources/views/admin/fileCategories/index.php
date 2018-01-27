@@ -56,7 +56,7 @@
   </div>
 </script>
 
-<?= $block('js') ?>
+<?= $block->js() ?>
 <script>
   require(['assets/apps/admin/category', 'form', 'dataTable', 'jquery-deparam'], function (categoryUtil, form) {
     var recordTable = $('#category-table').dataTable({
