@@ -425,7 +425,7 @@ class File extends \Miaoxing\Plugin\BaseModel
         if ($ret['fileId']) {
             $file = wei()->file()->curApp()->findOneById($ret['fileId']);
             $file->save([
-                'type' => File::TYPE_IMAGE,
+                'type' => self::TYPE_IMAGE,
             ]);
         }
 
