@@ -24,6 +24,9 @@ class File extends \Miaoxing\Plugin\BaseModel
      */
     protected $table = 'files';
 
+    // TODO 初始化时getFields错误
+    protected $fullTable = 'files';
+
     /**
      * {@inheritdoc}
      */
