@@ -126,6 +126,10 @@ class File extends \Miaoxing\Plugin\BaseModel
         /** @var File $service */
         $service = $this->wei->get($this->driver);
 
+        if ($customName === true) {
+            $customName = $this->generateName() . ($ext ? $ext : $this->getExt($file));
+        }
+
         // 2. 写入到存储服务中
         $ret = $service->write($file, $ext, $customName);
         if ($ret['code'] === 1) {
@@ -309,6 +313,11 @@ class File extends \Miaoxing\Plugin\BaseModel
         file_put_contents($file, $http->getResponse());
 
         return $file;
+    }
+
+    public function generateName()
+    {
+        return wei()->upload->getDir() . '/' . $this->app->getId() . '/' . date('Ymd') . time() . rand(1, 10000);
     }
 
     /**
