@@ -127,7 +127,7 @@ class File extends \Miaoxing\Plugin\BaseModel
         $service = $this->wei->get($this->driver);
 
         if ($customName === true) {
-            $customName = $this->generateName() . ($ext ? $ext : $this->getExt($file));
+            $customName = $this->generateName() . '.' . ($ext ? $ext : $this->getExt($file));
         }
 
         // 2. 写入到存储服务中
@@ -317,7 +317,7 @@ class File extends \Miaoxing\Plugin\BaseModel
 
     public function generateName()
     {
-        return wei()->upload->getDir() . '/' . $this->app->getId() . '/' . date('Ymd') . time() . rand(1, 10000);
+        return wei()->upload->getDir() . '/' . $this->app->getId() . '/' . date('Ymd') . '/' . time() . rand(1, 10000);
     }
 
     /**
