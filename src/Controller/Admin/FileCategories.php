@@ -14,4 +14,6 @@ class FileCategories extends Category
         'edit,update' => '编辑',
         'destroy' => '删除',
     ];
+
+    protected $hidePermission = true;
 }

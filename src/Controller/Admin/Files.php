@@ -17,6 +17,8 @@ class Files extends \Miaoxing\Plugin\BaseController
         'imageUpload' => '图片上传',
     ];
 
+    protected $hidePermission = true;
+
     protected $exts = ['txt', 'xml', 'pdf', 'zip', 'doc', 'ppt', 'docx', 'pptx', 'xls', 'xlsx'];
 
     public function indexAction($req)
