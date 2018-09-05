@@ -39,7 +39,11 @@ class File extends \Miaoxing\Plugin\BaseModel
      * @var array
      */
     protected $imageExts = [
-        'jpg', 'jpeg', 'png', 'bmp', 'gif',
+        'jpg',
+        'jpeg',
+        'png',
+        'bmp',
+        'gif',
     ];
 
     /**
@@ -65,9 +69,10 @@ class File extends \Miaoxing\Plugin\BaseModel
     /**
      * 保存图片记录到数据库
      * @param array $ret
+     * @param array $exts
      * @return $this
      */
-    protected function saveRet(array $ret)
+    protected function saveRet(array $ret, $exts = [])
     {
         $path = parse_url($ret['url'], PHP_URL_PATH);
         $path = ltrim($path, '/');
@@ -97,17 +102,17 @@ class File extends \Miaoxing\Plugin\BaseModel
         }
 
         $this->setAppId()->save([
-            'name' => basename($ret['url']),
-            'originalName' => (string) $ret['originalName'],
-            'path' => $path,
-            'url' => $ret['url'],
-            'ext' => $this->getExt($ret['url']),
-            'type' => static::TYPE_IMAGE, // 暂时都是图片
-            'size' => (int) $ret['size'],
-            'width' => (int) $ret['width'],
-            'height' => (int) $ret['height'],
-            'md5' => (string) $ret['md5'],
-        ]);
+                'name' => basename($ret['url']),
+                'originalName' => (string) $ret['originalName'],
+                'path' => $path,
+                'url' => $ret['url'],
+                'ext' => $this->getExt($ret['url']),
+                'type' => static::TYPE_IMAGE, // 暂时都是图片
+                'size' => (int) $ret['size'],
+                'width' => (int) $ret['width'],
+                'height' => (int) $ret['height'],
+                'md5' => (string) $ret['md5'],
+            ] + $exts);
 
         return $this;
     }
@@ -118,9 +123,10 @@ class File extends \Miaoxing\Plugin\BaseModel
      * @param string $file
      * @param string $ext 保存的文件后缀
      * @param string $customName 自定义的完整文件名称
+     * @param array $exts
      * @return array
      */
-    public function upload($file, $ext = '', $customName = '')
+    public function upload($file, $ext = '', $customName = '', $exts = [])
     {
         // 1. 获取存储服务
         /** @var File $service */
@@ -133,7 +139,7 @@ class File extends \Miaoxing\Plugin\BaseModel
         // 2. 写入到存储服务中
         $ret = $service->write($file, $ext, $customName);
         if ($ret['code'] === 1) {
-            $ret['fileId'] = wei()->file()->saveRet($ret)['id'];
+            $ret['fileId'] = wei()->file()->saveRet($ret, $exts)['id'];
         } else {
             $this->logger->warning('文件上传失败', $ret + ['file' => $file]);
         }
