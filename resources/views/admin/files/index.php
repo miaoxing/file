@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="<?= $asset('plugins/admin/css/filter.css') ?>"/>
 <?= $block->end() ?>
 
-<?php require $view->getFile('file:admin/files/page-header.php'); ?>
+<?php require $view->getFile('@file/admin/files/page-header.php'); ?>
 
 <div class="row">
   <div class="col-xs-12">
@@ -58,7 +58,7 @@
   <!-- /col -->
 </div>
 <!-- /row -->
-<?php require $view->getFile('file:admin/files/actions.php'); ?>
+<?php require $view->getFile('@file/admin/files/actions.php'); ?>
 
 <?= $block->js() ?>
 <script>
