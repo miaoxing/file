@@ -175,4 +175,26 @@ class Files extends \Miaoxing\Plugin\BaseController
 
         return $this->ret($ret);
     }
+
+    public function videoUploadAction()
+    {
+        // 1. 上传到服务器
+        $upload = wei()->upload;
+        $result = $upload([
+            'name' => '视频',
+            'exts' => ['mp4', 'mov'],
+            'postMaxSize' => 20 * 1024 * 1024,
+            'fileName' => date('YmdHis'),
+            'dir' => wei()->upload->getDir() . '/videos/' . date('Ymd'),
+        ]);
+        if (!$result) {
+            return $this->err($upload->getFirstMessage());
+        }
+
+        // 2. 保存上传信息
+        $req['file'] = $upload->getFile();
+        $ret = wei()->file->upload($req['file']);
+
+        return $ret;
+    }
 }
