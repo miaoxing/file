@@ -14,7 +14,7 @@
 <!-- /.page-header -->
 
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-12">
     <!-- PAGE CONTENT BEGINS -->
     <div class="table-responsive">
       <div class="well form-well">

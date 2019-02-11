@@ -7,7 +7,7 @@
 <?php require $view->getFile('@file/admin/files/page-header.php'); ?>
 
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-12">
     <!-- PAGE CONTENT BEGINS -->
     <div class="table-responsive">
       <form class="form-horizontal filter-form" id="search-form" role="form">
