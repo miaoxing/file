@@ -12,7 +12,7 @@
     <div class="table-responsive">
       <form class="form-horizontal filter-form" id="search-form" role="form">
 
-        <div class="well form-well m-b">
+        <div class="well">
           <div class="form-group form-group-sm">
 
             <label class="col-md-1 control-label" for="category-id">栏目：</label>
