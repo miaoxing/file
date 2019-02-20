@@ -94,7 +94,7 @@
 <script>
   require([
     'form', 'validator', 'jquery-deparam',
-    'assets/dateTimePicker',
+    'plugins/admin/js/range-date-time-picker',
     'css!comps/bootstrap-fileinput/css/fileinput.min',
     'comps/bootstrap-fileinput/js/fileinput.min'
   ], function (form) {
