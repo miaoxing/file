@@ -93,7 +93,7 @@
 <?= $block->js() ?>
 <script>
   require([
-    'form', 'validator', 'jquery-deparam',
+    'form', 'plugins/app/js/validation', 'jquery-deparam',
     'plugins/admin/js/range-date-time-picker',
     'css!comps/bootstrap-fileinput/css/fileinput.min',
     'comps/bootstrap-fileinput/js/fileinput.min'
