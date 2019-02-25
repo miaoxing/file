@@ -1,7 +1,7 @@
 <?php $view->layout() ?>
 
 <div class="page-header">
-  <a class="btn pull-right btn-default" href="<?= $url('admin/file-categories') ?>">返回列表</a>
+  <a class="btn float-right btn-default" href="<?= $url('admin/file-categories') ?>">返回列表</a>
 
   <h1>
     微官网

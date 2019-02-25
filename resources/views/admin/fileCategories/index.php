@@ -1,7 +1,7 @@
 <?php $view->layout() ?>
 
 <div class="page-header">
-  <a class="btn pull-right btn-success" href="<?= $url('admin/file-categories/new') ?>">添加栏目</a>
+  <a class="btn float-right btn-success" href="<?= $url('admin/file-categories/new') ?>">添加栏目</a>
 
   <h1>
     微官网
