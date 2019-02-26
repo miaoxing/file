@@ -78,7 +78,7 @@
           </button>
 
           &nbsp; &nbsp; &nbsp;
-          <a class="btn btn-default" href="<?= $url('admin/files') ?>">
+          <a class="btn btn-secondary" href="<?= $url('admin/files') ?>">
             <i class="fa fa-undo bigger-110"></i>
             返回列表
           </a>

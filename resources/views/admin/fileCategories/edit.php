@@ -1,7 +1,7 @@
 <?php $view->layout() ?>
 
 <div class="page-header">
-  <a class="btn float-right btn-default" href="<?= $url('admin/file-categories') ?>">返回列表</a>
+  <a class="btn float-right btn-secondary" href="<?= $url('admin/file-categories') ?>">返回列表</a>
 
   <h1>
     微官网
@@ -75,7 +75,7 @@
             提交
           </button>
           &nbsp; &nbsp; &nbsp;
-          <a class="btn btn-default" href="<?= $url('admin/file-categories') ?>">
+          <a class="btn btn-secondary" href="<?= $url('admin/file-categories') ?>">
             <i class="fa fa-undo bigger-110"></i>
             返回列表
           </a>
