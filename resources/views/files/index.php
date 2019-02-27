@@ -1,6 +1,6 @@
 <?php $view->layout() ?>
 
-<ul class="list list-link">
+<ul class="list">
   <?php foreach ($files as $file) : ?>
     <li>
       <a href="<?= $file['url'] ?>" class="list-item has-feedback">
