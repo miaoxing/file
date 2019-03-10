@@ -89,7 +89,7 @@
 
 <?= $block->js() ?>
 <script>
-  require(['form', 'ueditor', 'plugins/admin/js/data-table', 'plugins/app/js/validation'], function (form) {
+  require(['plugins/admin/js/form', 'ueditor', 'plugins/admin/js/data-table', 'plugins/app/js/validation'], function (form) {
     var parentJson = <?= json_encode(wei()->category()->notDeleted()->withParent('file')->getTreeToArray()) ?>;
     form.toOptions($('#parent-id'), parentJson, 'id', 'name');
 
