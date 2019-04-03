@@ -6,25 +6,7 @@ class Plugin extends \Miaoxing\Plugin\BasePlugin
 {
     protected $name = '文件管理';
 
-    protected $description = '提供文件上传,下载,入库等功能';
-
-    public function onAdminNavGetNavs(&$navs, &$categories, &$subCategories)
-    {
-        if (wei()->app->getNamespace() == 'plst') {
-            $subCategories['app-file'] = [
-                'parentId' => 'app',
-                'name' => '文件管理',
-                'icon' => 'fa fa-file',
-                'sort' => 1000,
-            ];
-
-            $navs[] = [
-                'parentId' => 'app-file',
-                'url' => 'admin/files',
-                'name' => '文件管理',
-            ];
-        }
-    }
+    protected $description = '提供文件上传,下载等功能';
 
     /**
      * 保存,将图片地址转换为虚拟地址
