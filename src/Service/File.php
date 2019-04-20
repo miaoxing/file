@@ -206,7 +206,7 @@ class File extends \Miaoxing\Plugin\BaseModel
             $mp3 = str_replace('.' . $ext, '.mp3', $localFile);
 
             if (!file_exists($mp3)) {
-                $command = "/usr/local/bin/ffmpeg -i $amr $mp3";
+                $command = "ffmpeg -i $amr $mp3";
                 system($command, $error);
             }
             $localFile = $mp3;
