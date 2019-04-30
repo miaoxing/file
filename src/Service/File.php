@@ -176,11 +176,12 @@ class File extends \Miaoxing\Plugin\BaseModel
 
         $localFile = $this->transform($file, $ext, $localFile);
 
+        // 获取可通过URL访问的地址
+        $url = substr(realpath($localFile), strlen(wei()->request->getServer('DOCUMENT_ROOT')));
+
         // 附加CDN域名到图片地址上
         if ($path = wei()->ueditor->getImagePath()) {
-            $url = $path . '/' . $localFile;
-        } else {
-            $url = $localFile;
+            $url = $path . $url;
         }
 
         return [
