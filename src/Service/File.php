@@ -175,13 +175,11 @@ class File extends \Miaoxing\Plugin\BaseModel
         }
 
         $localFile = $this->transform($file, $ext, $localFile);
-
-        // 获取可通过URL访问的地址
-        $url = substr(realpath($localFile), strlen(wei()->request->getServer('DOCUMENT_ROOT')));
+        $url = $this->getFileUrl($localFile);
 
         // 附加CDN域名到图片地址上
         if ($path = wei()->ueditor->getImagePath()) {
-            $url = $path . $url;
+            $url = $path . '/' . $url;
         }
 
         return [
@@ -434,10 +432,6 @@ class File extends \Miaoxing\Plugin\BaseModel
             return $this->err($upload->getFirstMessage());
         }
 
-        // TODO 由upload服务处理
-        // 允许其他用户访问,如nginx用户
-        chmod($dir, 0777);
-
         $req['file'] = $upload->getFile();
         $ret = wei()->file->upload($req['file']);
         if ($ret['fileId']) {
@@ -448,5 +442,16 @@ class File extends \Miaoxing\Plugin\BaseModel
         }
 
         return $ret;
+    }
+
+    /**
+     * 获取可通过URL访问的地址
+     *
+     * @param string $localFile
+     * @return string
+     */
+    protected function getFileUrl(string $localFile)
+    {
+        return substr(realpath($localFile), strlen(wei()->request->getServer('DOCUMENT_ROOT')) + 1);
     }
 }
