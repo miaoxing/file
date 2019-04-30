@@ -158,10 +158,6 @@ class Files extends \Miaoxing\Plugin\BaseController
             return $this->err($upload->getFirstMessage());
         }
 
-        // TODO 由upload服务处理
-        // 允许其他用户访问,如nginx用户
-        chmod($dir, 0777);
-
         $req['file'] = $upload->getFile();
         $ret = wei()->file->upload($req['file']);
         if ($ret['fileId']) {
