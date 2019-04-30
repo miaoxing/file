@@ -77,7 +77,6 @@ class Files extends \Miaoxing\Plugin\BaseController
         $result = $upload([
             'name' => '文件',
             'exts' => $this->exts,
-            'postMaxSize' => 20 * 1024 * 1024,
             'dir' => wei()->upload->getDir() . '/files/' . date('Ymd'),
         ]);
 
@@ -151,7 +150,6 @@ class Files extends \Miaoxing\Plugin\BaseController
         $result = $upload([
             'name' => '图片',
             'exts' => ['gif', 'png', 'jpg', 'jpeg', 'bmp'],
-            'postMaxSize' => 2 * 1024 * 1024,
             'dir' => $dir,
             'fileName' => time() . rand(1, 10000),
         ]);
@@ -183,7 +181,6 @@ class Files extends \Miaoxing\Plugin\BaseController
         $result = $upload([
             'name' => '视频',
             'exts' => ['mp4', 'mov'],
-            'postMaxSize' => 20 * 1024 * 1024,
             'fileName' => date('YmdHis'),
             'dir' => wei()->upload->getDir() . '/videos/' . date('Ymd'),
         ]);

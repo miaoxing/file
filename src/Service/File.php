@@ -425,7 +425,6 @@ class File extends \Miaoxing\Plugin\BaseModel
         $result = $upload([
             'name' => '图片',
             'exts' => ['gif', 'png', 'jpg', 'jpeg', 'bmp'],
-            'postMaxSize' => 2 * 1024 * 1024,
             'dir' => $dir,
             'fileName' => time() . rand(1, 10000),
         ]);
