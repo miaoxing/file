@@ -474,11 +474,11 @@ class File extends \Miaoxing\Plugin\BaseModel
     /**
      * 获取可通过URL访问的地址
      *
-     * @param string $localFile
+     * @param string $file
      * @return string
      */
-    protected function getFileUrl(string $localFile)
+    public function getFileUrl(string $file)
     {
-        return substr(realpath($localFile), strlen(wei()->request->getServer('DOCUMENT_ROOT')) + 1);
+        return substr($file, strlen('public/'));
     }
 }
