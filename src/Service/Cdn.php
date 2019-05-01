@@ -8,7 +8,11 @@ namespace Miaoxing\File\Service;
 class Cdn extends \Miaoxing\Plugin\BaseService
 {
     protected $exts = [
-        'jpg', 'jpeg', 'gif', 'png', 'bmp',
+        'jpg',
+        'jpeg',
+        'gif',
+        'png',
+        'bmp',
     ];
 
     protected $hosts = [];
@@ -132,14 +136,11 @@ class Cdn extends \Miaoxing\Plugin\BaseService
         }
 
         // 保存到本地
-        $dir = wei()->upload->getDir() . '/' . $this->app->getId() . '/' . date('Ymd');
-        if (!is_dir($dir)) {
-            mkdir($dir, 0777, true);
-        }
-        $file = $dir . time() . rand(1, 10000) . '.' . wei()->file->getExt($remoteFile);
-        file_put_contents($file, $http->getResponse());
+        $file = wei()->file;
+        $filePath = $file->getUploadDir() . '/' . $file->getUploadName() . '.' . $file->getExt($remoteFile);
+        file_put_contents($filePath, $http->getResponse());
 
-        return $file;
+        return $filePath;
     }
 
     /**

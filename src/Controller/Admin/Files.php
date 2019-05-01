@@ -77,7 +77,7 @@ class Files extends \Miaoxing\Plugin\BaseController
         $result = $upload([
             'name' => '文件',
             'exts' => $this->exts,
-            'dir' => wei()->upload->getDir() . '/files/' . date('Ymd'),
+            'dir' => wei()->file->getUploadDir(),
         ]);
 
         if (!$result) {
@@ -146,12 +146,11 @@ class Files extends \Miaoxing\Plugin\BaseController
     public function imageUploadAction($req)
     {
         $upload = wei()->upload;
-        $dir = wei()->upload->getDir() . '/' . $this->app->getId() . '/' . date('Ymd');
         $result = $upload([
             'name' => '图片',
-            'exts' => ['gif', 'png', 'jpg', 'jpeg', 'bmp'],
-            'dir' => $dir,
-            'fileName' => time() . rand(1, 10000),
+            'exts' => wei()->file->getImageExts(),
+            'dir' => wei()->file->getUploadDir(),
+            'fileName' => wei()->file->getUploadName(),
         ]);
 
         if (!$result) {
@@ -177,8 +176,8 @@ class Files extends \Miaoxing\Plugin\BaseController
         $result = $upload([
             'name' => '视频',
             'exts' => ['mp4', 'mov'],
-            'fileName' => date('YmdHis'),
-            'dir' => wei()->upload->getDir() . '/videos/' . date('Ymd'),
+            'fileName' => wei()->file->getUploadName(),
+            'dir' => wei()->file->getUploadDir(),
         ]);
         if (!$result) {
             return $this->err($upload->getFirstMessage());

@@ -2,8 +2,11 @@
 
 namespace Miaoxing\File\Service;
 
+use Miaoxing\Plugin\Service\App;
+
 /**
  * @property \Miaoxing\App\Service\Logger $logger
+ * @property App $app
  */
 class File extends \Miaoxing\Plugin\BaseModel
 {
@@ -36,6 +39,7 @@ class File extends \Miaoxing\Plugin\BaseModel
 
     /**
      * 图片类型的扩展名
+     *
      * @var array
      */
     protected $imageExts = [
@@ -48,6 +52,7 @@ class File extends \Miaoxing\Plugin\BaseModel
 
     /**
      * 特殊需转换的语音类型的扩展名
+     *
      * @var array
      */
     protected $voiceExts = [
@@ -282,21 +287,20 @@ class File extends \Miaoxing\Plugin\BaseModel
             $ext = $this->getExt($remoteFile);
         }
 
-        $baseDir = wei()->upload->getDir() . '/' . $this->app->getId();
         // TODO 简化合并类似逻辑
         if ($customName) {
             $dir = dirname($customName);
             $file = $customName;
         } elseif ($path) {
             // 如果指定了路径且文件存在,返回已有的地址
-            $dir = $baseDir . '/' . substr($path, 0, 2);
+            $dir = dirname($this->getUploadDir()) . '/' . substr($path, 0, 2);
             $file = $dir . '/' . $path . '.' . $ext;
             if (is_file($file)) {
                 return $file;
             }
         } else {
-            $dir = $baseDir . '/' . date('Ymd');
-            $file = $dir . '/' . time() . rand(1, 10000) . '.' . $ext;
+            $dir = $this->getUploadDir();
+            $file = $dir . '/' . $this->getUploadName() . '.' . $ext;
         }
 
         if (!is_dir($dir)) {
@@ -322,7 +326,7 @@ class File extends \Miaoxing\Plugin\BaseModel
 
     public function generateName()
     {
-        return wei()->upload->getDir() . '/' . $this->app->getId() . '/' . date('Ymd') . '/' . time() . rand(1, 10000);
+        return $this->getUploadDir() . '/' . $this->getUploadName();
     }
 
     /**
@@ -420,12 +424,11 @@ class File extends \Miaoxing\Plugin\BaseModel
     public function uploadImage()
     {
         $upload = wei()->upload;
-        $dir = wei()->upload->getDir() . '/' . $this->app->getId() . '/' . date('Ymd');
         $result = $upload([
             'name' => '图片',
-            'exts' => ['gif', 'png', 'jpg', 'jpeg', 'bmp'],
-            'dir' => $dir,
-            'fileName' => time() . rand(1, 10000),
+            'exts' => $this->imageExts,
+            'dir' => $this->getUploadDir(),
+            'fileName' => $this->getUploadName(),
         ]);
 
         if (!$result) {
@@ -442,6 +445,30 @@ class File extends \Miaoxing\Plugin\BaseModel
         }
 
         return $ret;
+    }
+
+    /**
+     * 获取用于存储文件的目录
+     *
+     * @return string
+     */
+    public function getUploadDir()
+    {
+        $dir = wei()->upload->getDir() . '/' . $this->app->getId() . '/' . date('Ymd');
+        if (!is_dir($dir)) {
+            mkdir($dir, 0777, true);
+        }
+        return $dir;
+    }
+
+    /**
+     * 生成用于存储的文件名称(不带扩展名)
+     *
+     * @return string
+     */
+    public function getUploadName()
+    {
+        return time() . rand(1, 10000);
     }
 
     /**
