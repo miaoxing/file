@@ -477,7 +477,7 @@ class File extends \Miaoxing\Plugin\BaseModel
      * @param string $localFile
      * @return string
      */
-    public function getFileUrl(string $localFile)
+    protected function getFileUrl(string $localFile)
     {
         return substr(realpath($localFile), strlen(wei()->request->getServer('DOCUMENT_ROOT')) + 1);
     }
