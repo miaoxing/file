@@ -1,12 +1,14 @@
 {
   "name": "miaoxing/file",
+  "type": "miaoxing-plugin",
+  "description": "Miaoxing File Plugin",
   "keywords": [
-    "miaoxing", "file"
+    "miaoxing",
+    "file"
   ],
   "license": "MIT",
   "require": {
-    "miaoxing/app": "dev-master@dev",
-    "miaoxing/category": "dev-master@dev"
+    "miaoxing/app": "^0.2.4"
   },
   "autoload": {
     "psr-4": {
