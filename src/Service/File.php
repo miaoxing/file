@@ -420,7 +420,7 @@ class File extends BaseService
      */
     protected function getUploadDir()
     {
-        $dir = $this->upload->getDir() . '/' . $this->app->getId() . '/' . date('Ymd');
+        $dir = $this->upload->getDir() . '/' . $this->app->getId() . '/' . date('ymd');
         if (!is_dir($dir)) {
             mkdir($dir, 0777, true);
         }
@@ -435,6 +435,6 @@ class File extends BaseService
      */
     protected function getUploadName()
     {
-        return time() . rand(1, 10000);
+        return date('His') . mt_rand(100000, 999999);
     }
 }
