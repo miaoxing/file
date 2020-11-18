@@ -2,17 +2,22 @@
 
 namespace Miaoxing\File\Service;
 
-use Miaoxing\Plugin\Service\App;
+use Miaoxing\Plugin\BaseService;
+use Miaoxing\Plugin\Service\Ret;
 
 /**
- * @property \Miaoxing\App\Service\Logger $logger
- * @property App $app
+ * @mixin \LoggerMixin
+ * @mixin \AppMixin
+ * @mixin \UploadMixin
  */
-class File extends \Miaoxing\Plugin\BaseModel
+class File extends BaseService
 {
     const TYPE_IMAGE = 1;
-    const TYPE_FILE = 2;
+
+    const TYPE_DOC = 2;
+
     const TYPE_VOICE = 3;
+
     const TYPE_VIDEO = 4;
 
     /**
@@ -21,21 +26,6 @@ class File extends \Miaoxing\Plugin\BaseModel
      * @var string
      */
     protected $driver = 'file';
-
-    /**
-     * {@inheritdoc}
-     */
-    protected $table = 'files';
-
-    // TODO 初始化时getFields错误
-    protected $fullTable = 'files';
-
-    /**
-     * {@inheritdoc}
-     */
-    protected $providers = [
-        'db' => 'app.db',
-    ];
 
     /**
      * 图片类型的扩展名
@@ -59,28 +49,21 @@ class File extends \Miaoxing\Plugin\BaseModel
         'amr',
     ];
 
-    protected $fileType = [
-        1 => 'image',
-        2 => 'file',
-        3 => 'voice',
-        4 => 'video',
-    ];
-
-    public function getFileType()
-    {
-        return $this->fileType;
-    }
-
     /**
      * 保存图片记录到数据库
-     * @param array $ret
-     * @param array $exts
-     * @return $this
+     *
+     * @param Ret $ret
+     * @param array $extraData
+     * @return FileModel
      */
-    protected function saveRet(array $ret, $exts = [])
+    protected function saveRet(Ret $ret, array $extraData = [])
     {
-        $path = parse_url($ret['url'], PHP_URL_PATH);
-        $path = ltrim($path, '/');
+        if (isset($ret['pathName'])) {
+            $path = $ret['pathName'];
+        } else {
+            $path = parse_url($ret['url'], PHP_URL_PATH);
+            $path = ltrim($path, '/');
+        }
 
         // 自动计算宽高
         $isImage = wei()->isImage;
@@ -106,9 +89,8 @@ class File extends \Miaoxing\Plugin\BaseModel
             $ret['md5'] = md5_file($path);
         }
 
-        $this->setAppId()->save([
-                'name' => basename($ret['url']),
-                'originalName' => (string) $ret['originalName'],
+        return FileModel::save([
+                'origName' => (string) $ret['origName'],
                 'path' => $path,
                 'url' => $ret['url'],
                 'ext' => $this->getExt($ret['url']),
@@ -117,9 +99,7 @@ class File extends \Miaoxing\Plugin\BaseModel
                 'width' => (int) $ret['width'],
                 'height' => (int) $ret['height'],
                 'md5' => (string) $ret['md5'],
-            ] + $exts);
-
-        return $this;
+            ] + $extraData);
     }
 
     /**
@@ -127,11 +107,12 @@ class File extends \Miaoxing\Plugin\BaseModel
      *
      * @param string $file
      * @param string $ext 保存的文件后缀
-     * @param string $customName 自定义的完整文件名称
-     * @param array $exts
-     * @return array
+     * @param string|true $customName 自定义的完整文件名称
+     * @param array $extraData
+     * @return Ret
+     * @svc
      */
-    public function upload($file, $ext = '', $customName = '', $exts = [])
+    protected function upload($file, $ext = '', $customName = '', $extraData = [])
     {
         // 1. 获取存储服务
         /** @var File $service */
@@ -143,10 +124,10 @@ class File extends \Miaoxing\Plugin\BaseModel
 
         // 2. 写入到存储服务中
         $ret = $service->write($file, $ext, $customName);
-        if ($ret['code'] === 1) {
-            $ret['fileId'] = wei()->file()->saveRet($ret, $exts)['id'];
+        if ($ret->isSuc()) {
+            $ret['data'] = $this->saveRet($ret, $extraData);
         } else {
-            $this->logger->warning('文件上传失败', $ret + ['file' => $file]);
+            $this->logger->warning('文件上传失败', $ret->toArray() + ['file' => $file]);
         }
 
         return $ret;
@@ -170,29 +151,24 @@ class File extends \Miaoxing\Plugin\BaseModel
      * @param string $file
      * @param string $ext 保存的文件后缀
      * @param string $customName 自定义的完整文件名称
-     * @return array
+     * @return Ret
      */
     public function write($file, $ext = '', $customName = '')
     {
         $localFile = $this->downloadIfRemote($file, $ext, '', $customName);
         if (!$localFile) {
-            return ['code' => -1, 'message' => sprintf('文件%s下载失败', $file)];
+            return err(['文件%s下载失败', $file]);
         }
 
         $localFile = $this->transform($file, $ext, $localFile);
         $url = $this->getFileUrl($localFile);
 
-        // 附加CDN域名到图片地址上
-        if ($path = wei()->ueditor->getImagePath()) {
-            $url = $path . '/' . $url;
-        }
-
-        return [
-            'code' => 1,
+        return suc([
             'message' => '上传成功',
             'url' => $url,
-            'originalName' => $this->getFileName($file),
-        ];
+            'pathName' => $file,
+            'origName' => $this->getFileName($file),
+        ]);
     }
 
     /**
@@ -379,16 +355,6 @@ class File extends \Miaoxing\Plugin\BaseModel
     }
 
     /**
-     * 获取图片的扩展名
-     *
-     * @return array
-     */
-    public function getImageExts()
-    {
-        return $this->imageExts;
-    }
-
-    /**
      * 检查扩展名是否为需转换语音类型
      *
      * @param string $ext
@@ -404,71 +370,9 @@ class File extends \Miaoxing\Plugin\BaseModel
      *
      * @return array
      */
-    public function getVoiceExts()
+    protected function getVoiceExts()
     {
         return $this->voiceExts;
-    }
-
-    /**
-     * 获取文件类别对象
-     * @return $this|bool
-     */
-    public function getCategory()
-    {
-        return $this['categoryId'] ? wei()->category()->findOneById($this['categoryId']) : false;
-    }
-
-    /**
-     * @todo 整理
-     */
-    public function uploadImage()
-    {
-        $upload = wei()->upload;
-        $result = $upload([
-            'name' => '图片',
-            'exts' => $this->imageExts,
-            'dir' => $this->getUploadDir(),
-            'fileName' => $this->getUploadName(),
-        ]);
-
-        if (!$result) {
-            return $this->err($upload->getFirstMessage());
-        }
-
-        $req['file'] = $upload->getFile();
-        $ret = wei()->file->upload($req['file']);
-        if ($ret['fileId']) {
-            $file = wei()->file()->curApp()->findOneById($ret['fileId']);
-            $file->save([
-                'type' => self::TYPE_IMAGE,
-            ]);
-        }
-
-        return $ret;
-    }
-
-    /**
-     * 获取用于存储文件的目录
-     *
-     * @return string
-     */
-    public function getUploadDir()
-    {
-        $dir = wei()->upload->getDir() . '/' . $this->app->getId() . '/' . date('Ymd');
-        if (!is_dir($dir)) {
-            mkdir($dir, 0777, true);
-        }
-        return $dir;
-    }
-
-    /**
-     * 生成用于存储的文件名称(不带扩展名)
-     *
-     * @return string
-     */
-    public function getUploadName()
-    {
-        return time() . rand(1, 10000);
     }
 
     /**
@@ -479,6 +383,58 @@ class File extends \Miaoxing\Plugin\BaseModel
      */
     public function getFileUrl(string $file)
     {
-        return substr($file, strlen('public/'));
+        return '/' . substr($file, strlen('public/'));
+    }
+
+    /**
+     * 获取所有允许上传的文件扩展名
+     *
+     * @return array
+     * @svc
+     */
+    protected function getAllExts()
+    {
+        return array_merge(
+            $this->getImageExts(),
+            $this->getVoiceExts()
+        );
+    }
+
+    /**
+     * 获取图片的扩展名
+     *
+     * @return array
+     * @svc
+     */
+    protected function getImageExts()
+    {
+        return $this->imageExts;
+    }
+
+    /**
+     * 获取用于存储文件的目录
+     *
+     * @return string
+     * @throws \Exception
+     * @svc
+     */
+    protected function getUploadDir()
+    {
+        $dir = $this->upload->getDir() . '/' . $this->app->getId() . '/' . date('Ymd');
+        if (!is_dir($dir)) {
+            mkdir($dir, 0777, true);
+        }
+        return $dir;
+    }
+
+    /**
+     * 生成用于存储的文件名称(不带扩展名)
+     *
+     * @return string
+     * @svc
+     */
+    protected function getUploadName()
+    {
+        return time() . rand(1, 10000);
     }
 }

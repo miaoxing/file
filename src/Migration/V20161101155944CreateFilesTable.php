@@ -2,7 +2,7 @@
 
 namespace Miaoxing\File\Migration;
 
-use Miaoxing\Plugin\BaseMigration;
+use Wei\Migration\BaseMigration;
 
 class V20161101155944CreateFilesTable extends BaseMigration
 {
@@ -13,24 +13,19 @@ class V20161101155944CreateFilesTable extends BaseMigration
     {
         $this->schema->table('files')
             ->id()
-            ->int('appId')
-            ->int('categoryId')
-            ->string('originalName', 64)
+            ->int('app_id')
+            ->string('orig_name', 64)
             ->string('path')
-            ->tinyInt('type', 1)->comment('文件类型,1是图片,2是文件,3是音频,4是视频')
+            ->tinyInt('type')->comment('文件类型,1是图片,2是文档,3是音频,4是视频')
             ->string('ext', 8)->comment('扩展名')
             ->int('size')
             ->smallInt('width')
             ->smallInt('height')
             ->char('md5', 32)
             ->string('url')
-            ->int('createUser')
-            ->int('updateUser')
-            ->datetime('startTime')
-            ->datetime('endTime')
-            ->bool('passed')
-            ->bool('audit')
-            ->timestampsV1()
+            ->datetime('orig_created_at')
+            ->timestamps()
+            ->userstamps()
             ->exec();
     }
 
