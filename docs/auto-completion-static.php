@@ -2,10 +2,6 @@
 
 namespace Miaoxing\File\Service;
 
-class Cdn
-{
-}
-
 class File
 {
     /**
@@ -13,7 +9,7 @@ class File
      *
      * @param string $file
      * @param string $ext 保存的文件后缀
-     * @param string $customName 自定义的完整文件名称
+     * @param string|true $customName 自定义的完整文件名称
      * @param array $extraData
      * @return Ret
      * @see File::upload
@@ -274,17 +270,6 @@ class FileModel
      * @param array|Req|null $req
      * @return $this
      * @throws \Exception
-     * @deprecated Use `findFromReq` instead
-     * @see Model::findFromRequest
-     */
-    public static function findFromRequest($req = null)
-    {
-    }
-
-    /**
-     * @param array|Req|null $req
-     * @return $this
-     * @throws \Exception
      * @see Model::findFromReq
      */
     public static function findFromReq($req = null)
@@ -302,7 +287,7 @@ class FileModel
     }
 
     /**
-     * @return $this|array
+     * @return $this|$this[]|array
      * @see Model::all
      */
     public static function all()
@@ -906,10 +891,6 @@ class FileModel
 namespace Miaoxing\File\Service;
 
 if (0) {
-class Cdn
-{
-}
-
 class File
 {
     /**
@@ -917,7 +898,7 @@ class File
      *
      * @param string $file
      * @param string $ext 保存的文件后缀
-     * @param string $customName 自定义的完整文件名称
+     * @param string|true $customName 自定义的完整文件名称
      * @param array $extraData
      * @return Ret
      * @see File::upload
@@ -1178,17 +1159,6 @@ class FileModel
      * @param array|Req|null $req
      * @return $this
      * @throws \Exception
-     * @deprecated Use `findFromReq` instead
-     * @see Model::findFromRequest
-     */
-    public function findFromRequest($req = null)
-    {
-    }
-
-    /**
-     * @param array|Req|null $req
-     * @return $this
-     * @throws \Exception
      * @see Model::findFromReq
      */
     public function findFromReq($req = null)
@@ -1206,7 +1176,7 @@ class FileModel
     }
 
     /**
-     * @return $this|array
+     * @return $this|$this[]|array
      * @see Model::all
      */
     public function all()

@@ -1,12 +1,6 @@
 <?php
 
 /**
- * @property    Miaoxing\File\Service\Cdn $cdn
- */
-class CdnMixin {
-}
-
-/**
  * @property    Miaoxing\File\Service\File $file
  */
 class FileMixin {
@@ -20,7 +14,6 @@ class FileModelMixin {
 }
 
 /**
- * @mixin CdnMixin
  * @mixin FileMixin
  * @mixin FileModelMixin
  */
@@ -34,9 +27,6 @@ function wei()
 {
     return new AutoCompletion;
 }
-
-/** @var Miaoxing\File\Service\Cdn $cdn */
-$cdn = wei()->cdn;
 
 /** @var Miaoxing\File\Service\File $file */
 $file = wei()->file;
