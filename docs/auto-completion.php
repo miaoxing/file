@@ -8,7 +8,7 @@ class FileMixin {
 
 /**
  * @property    Miaoxing\File\Service\FileModel $fileModel
- * @method      Miaoxing\File\Service\FileModel|Miaoxing\File\Service\FileModel[] fileModel($table = null)
+ * @method      Miaoxing\File\Service\FileModel fileModel() 返回当前对象
  */
 class FileModelMixin {
 }
@@ -31,8 +31,8 @@ function wei()
 /** @var Miaoxing\File\Service\File $file */
 $file = wei()->file;
 
-/** @var Miaoxing\File\Service\FileModel $fileModel */
-$file = wei()->fileModel();
+/** @var Miaoxing\File\Service\FileModel $file */
+$file = wei()->fileModel;
 
-/** @var Miaoxing\File\Service\FileModel|Miaoxing\File\Service\FileModel[] $fileModels */
+/** @var Miaoxing\File\Service\FileModel|Miaoxing\File\Service\FileModel[] $files */
 $files = wei()->fileModel();

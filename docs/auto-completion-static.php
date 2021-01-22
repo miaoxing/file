@@ -63,25 +63,25 @@ class File
 class FileModel
 {
     /**
+     * Set each attribute value, without checking whether the column is fillable, and save the model
+     *
+     * @param iterable $attributes
+     * @return $this
+     * @see FileModel::saveAttributes
+     */
+    public static function saveAttributes(iterable $attributes = []): self
+    {
+    }
+
+    /**
      * Returns the record data as array
      *
      * @param array|callable $returnFields A indexed array specified the fields to return
      * @param callable|null $prepend
      * @return array
-     * @see Model::toArray
+     * @see FileModel::toArray
      */
-    public static function toArray($returnFields = [], callable $prepend = null)
-    {
-    }
-
-    /**
-     * 不经过fillable检查,设置数据并保存
-     *
-     * @param array $data
-     * @return $this
-     * @see Model::saveData
-     */
-    public static function saveData($data = [])
+    public static function toArray($returnFields = [], callable $prepend = null): array
     {
     }
 
@@ -90,9 +90,9 @@ class FileModel
      *
      * @param array $merge
      * @return Ret
-     * @see Model::toRet
+     * @see FileModel::toRet
      */
-    public static function toRet(array $merge = [])
+    public static function toRet(array $merge = []): \Wei\Ret
     {
     }
 
@@ -100,31 +100,31 @@ class FileModel
      * Return the record table name
      *
      * @return string
-     * @see Model::getTable
+     * @see FileModel::getTable
      */
-    public static function getTable()
+    public static function getTable(): string
     {
     }
 
     /**
      * Import a PHP array in this record
      *
-     * @param array|\ArrayAccess $data
+     * @param iterable $array
      * @return $this
-     * @see Model::fromArray
+     * @see FileModel::fromArray
      */
-    public static function fromArray($data)
+    public static function fromArray(iterable $array): self
     {
     }
 
     /**
      * Save the record or data to database
      *
-     * @param array $data
+     * @param iterable $attributes
      * @return $this
-     * @see Model::save
+     * @see FileModel::save
      */
-    public static function save($data = [])
+    public static function save(iterable $attributes = []): self
     {
     }
 
@@ -133,22 +133,22 @@ class FileModel
      *
      * @param int|string $id
      * @return $this
-     * @see Model::destroy
+     * @see FileModel::destroy
      */
-    public static function destroy($id = null)
+    public static function destroy($id = null): self
     {
     }
 
     /**
      * Set the record field value
      *
-     * @param string $name
+     * @param string|int $name
      * @param mixed $value
      * @param bool $throwException
      * @return $this|false
-     * @see Model::set
+     * @see FileModel::set
      */
-    public static function set($name, $value = null, $throwException = true)
+    public static function set($name, $value, bool $throwException = true)
     {
     }
 
@@ -157,9 +157,9 @@ class FileModel
      *
      * @param int|string|array|null $id
      * @return $this|null
-     * @see Model::find
+     * @see FileModel::find
      */
-    public static function find($id)
+    public static function find($id): ?self
     {
     }
 
@@ -169,43 +169,43 @@ class FileModel
      * @param int|string $id
      * @return $this
      * @throws \Exception
-     * @see Model::findOrFail
+     * @see FileModel::findOrFail
      */
-    public static function findOrFail($id)
+    public static function findOrFail($id): self
     {
     }
 
     /**
-     * Find a record by primary key, or init with the specified data if record not found
+     * Find a record by primary key, or init with the specified attributes if record not found
      *
      * @param int|string $id
-     * @param array|object $data
+     * @param array|object $attributes
      * @return $this
-     * @see Model::findOrInit
+     * @see FileModel::findOrInit
      */
-    public static function findOrInit($id = null, $data = [])
+    public static function findOrInit($id = null, $attributes = []): self
     {
     }
 
     /**
-     * Find a record by primary key, or save with the specified data if record not found
+     * Find a record by primary key, or save with the specified attributes if record not found
      *
      * @param int|string $id
-     * @param array $data
+     * @param array $attributes
      * @return $this
-     * @see Model::findOrCreate
+     * @see FileModel::findOrCreate
      */
-    public static function findOrCreate($id, $data = [])
+    public static function findOrCreate($id, $attributes = []): self
     {
     }
 
     /**
      * @param array $attributes
-     * @param array $data
+     * @param array|object $data
      * @return $this
-     * @see Model::findByOrCreate
+     * @see FileModel::findByOrCreate
      */
-    public static function findByOrCreate($attributes, $data = [])
+    public static function findByOrCreate($attributes, $data = []): self
     {
     }
 
@@ -214,9 +214,9 @@ class FileModel
      *
      * @param array $ids
      * @return $this|$this[]
-     * @see Model::findAll
+     * @see FileModel::findAll
      */
-    public static function findAll($ids)
+    public static function findAll(array $ids): self
     {
     }
 
@@ -225,9 +225,9 @@ class FileModel
      * @param mixed|null $operator
      * @param mixed|null $value
      * @return $this|null
-     * @see Model::findBy
+     * @see FileModel::findBy
      */
-    public static function findBy($column, $operator = null, $value = null)
+    public static function findBy($column, $operator = null, $value = null): ?self
     {
     }
 
@@ -236,9 +236,9 @@ class FileModel
      * @param mixed|null $operator
      * @param mixed|null $value
      * @return $this|$this[]
-     * @see Model::findAllBy
+     * @see FileModel::findAllBy
      */
-    public static function findAllBy($column, $operator = null, $value = null)
+    public static function findAllBy($column, $operator = null, $value = null): self
     {
     }
 
@@ -246,9 +246,9 @@ class FileModel
      * @param array $attributes
      * @param array|object $data
      * @return $this
-     * @see Model::findOrInitBy
+     * @see FileModel::findOrInitBy
      */
-    public static function findOrInitBy($attributes, $data = [])
+    public static function findOrInitBy(array $attributes, $data = []): self
     {
     }
 
@@ -260,19 +260,19 @@ class FileModel
      * @param mixed|null $value
      * @return $this
      * @throws \Exception
-     * @see Model::findByOrFail
+     * @see FileModel::findByOrFail
      */
-    public static function findByOrFail($column, $operator = null, $value = null)
+    public static function findByOrFail($column, $operator = null, $value = null): self
     {
     }
 
     /**
-     * @param array|Req|null $req
+     * @param Req|null $req
      * @return $this
      * @throws \Exception
-     * @see Model::findFromReq
+     * @see FileModel::findFromReq
      */
-    public static function findFromReq($req = null)
+    public static function findFromReq(\Wei\Req $req = null): self
     {
     }
 
@@ -280,36 +280,49 @@ class FileModel
      * Executes the generated SQL and returns the found record object or null if not found
      *
      * @return $this|null
-     * @see Model::first
+     * @see FileModel::first
      */
-    public static function first()
+    public static function first(): ?self
     {
     }
 
     /**
-     * @return $this|$this[]|array
-     * @see Model::all
+     * @return $this|$this[]
+     * @see FileModel::all
      */
-    public static function all()
+    public static function all(): self
     {
     }
 
     /**
+     * Coll: Specifies a field to be the key of the fetched array
+     *
      * @param string $column
      * @return $this
-     * @see Model::indexBy
+     * @see FileModel::indexBy
      */
-    public static function indexBy($column)
+    public static function indexBy(string $column): self
     {
     }
 
     /**
-     * Returns the name of fields of current table
+     * Returns the name of columns of current table
      *
      * @return array
-     * @see QueryBuilder::getColumns
+     * @see FileModel::getColumns
      */
-    public static function getFields()
+    public static function getColumns(): array
+    {
+    }
+
+    /**
+     * Check if column name exists
+     *
+     * @param string|int|null $name
+     * @return bool
+     * @see FileModel::hasColumn
+     */
+    public static function hasColumn($name): bool
     {
     }
 
@@ -320,9 +333,9 @@ class FileModel
      * @param mixed|null $operator
      * @param mixed|null $value
      * @return array|null
-     * @see QueryBuilder::fetch
+     * @see FileModel::fetch
      */
-    public static function fetch($column = null, $operator = null, $value = null)
+    public static function fetch($column = null, $operator = null, $value = null): ?array
     {
     }
 
@@ -333,9 +346,9 @@ class FileModel
      * @param mixed|null $operator
      * @param mixed|null $value
      * @return array
-     * @see QueryBuilder::fetchAll
+     * @see FileModel::fetchAll
      */
-    public static function fetchAll($column = null, $operator = null, $value = null)
+    public static function fetchAll($column = null, $operator = null, $value = null): array
     {
     }
 
@@ -343,9 +356,9 @@ class FileModel
      * @param string $column
      * @param string|null $index
      * @return array
-     * @see QueryBuilder::pluck
+     * @see FileModel::pluck
      */
-    public static function pluck(string $column, string $index = null)
+    public static function pluck(string $column, string $index = null): array
     {
     }
 
@@ -353,9 +366,9 @@ class FileModel
      * @param int $count
      * @param callable $callback
      * @return bool
-     * @see QueryBuilder::chunk
+     * @see FileModel::chunk
      */
-    public static function chunk(int $count, callable $callback)
+    public static function chunk(int $count, callable $callback): bool
     {
     }
 
@@ -364,9 +377,9 @@ class FileModel
      *
      * @param string $column
      * @return int
-     * @see QueryBuilder::cnt
+     * @see FileModel::cnt
      */
-    public static function cnt($column = '*')
+    public static function cnt($column = '*'): int
     {
     }
 
@@ -376,9 +389,9 @@ class FileModel
      * @param array|string $set
      * @param mixed $value
      * @return int
-     * @see QueryBuilder::update
+     * @see FileModel::update
      */
-    public static function update($set = [], $value = null)
+    public static function update($set = [], $value = null): int
     {
     }
 
@@ -388,10 +401,10 @@ class FileModel
      * @param mixed|null $column
      * @param mixed|null $operator
      * @param mixed|null $value
-     * @return mixed
-     * @see QueryBuilder::delete
+     * @return int
+     * @see FileModel::delete
      */
-    public static function delete($column = null, $operator = null, $value = null)
+    public static function delete($column = null, $operator = null, $value = null): int
     {
     }
 
@@ -400,9 +413,9 @@ class FileModel
      *
      * @param int|float|string $offset The first result to return
      * @return $this
-     * @see QueryBuilder::offset
+     * @see FileModel::offset
      */
-    public static function offset($offset)
+    public static function offset($offset): self
     {
     }
 
@@ -411,9 +424,9 @@ class FileModel
      *
      * @param int|float|string $limit The maximum number of results to retrieve
      * @return $this
-     * @see QueryBuilder::limit
+     * @see FileModel::limit
      */
-    public static function limit($limit)
+    public static function limit($limit): self
     {
     }
 
@@ -422,9 +435,9 @@ class FileModel
      *
      * @param int $page The page number
      * @return $this
-     * @see QueryBuilder::page
+     * @see FileModel::page
      */
-    public static function page($page)
+    public static function page($page): self
     {
     }
 
@@ -434,7 +447,7 @@ class FileModel
      *
      * @param array|string $columns the selection expressions
      * @return $this
-     * @see QueryBuilder::select
+     * @see FileModel::select
      */
     public static function select($columns = ['*']): self
     {
@@ -443,18 +456,18 @@ class FileModel
     /**
      * @param array|string $columns
      * @return $this
-     * @see QueryBuilder::selectDistinct
+     * @see FileModel::selectDistinct
      */
-    public static function selectDistinct($columns)
+    public static function selectDistinct($columns): self
     {
     }
 
     /**
      * @param string $expression
      * @return $this
-     * @see QueryBuilder::selectRaw
+     * @see FileModel::selectRaw
      */
-    public static function selectRaw($expression)
+    public static function selectRaw($expression): self
     {
     }
 
@@ -464,9 +477,21 @@ class FileModel
      *
      * @param array|string $columns
      * @return $this
-     * @see QueryBuilder::selectExcept
+     * @see FileModel::selectExcept
      */
-    public static function selectExcept($columns)
+    public static function selectExcept($columns): self
+    {
+    }
+
+    /**
+     * Specifies an item of the main table that is to be returned in the query result.
+     * Default to all columns of the main table
+     *
+     * @param string $column
+     * @return $this
+     * @see FileModel::selectMain
+     */
+    public static function selectMain(string $column = '*'): self
     {
     }
 
@@ -476,9 +501,9 @@ class FileModel
      * @param string $table
      * @param string|null $alias
      * @return $this
-     * @see QueryBuilder::from
+     * @see FileModel::from
      */
-    public static function from($table, $alias = null): self
+    public static function from(string $table, $alias = null): self
     {
     }
 
@@ -486,7 +511,7 @@ class FileModel
      * @param string $table
      * @param mixed|null $alias
      * @return $this
-     * @see QueryBuilder::table
+     * @see FileModel::table
      */
     public static function table(string $table, $alias = null): self
     {
@@ -496,14 +521,14 @@ class FileModel
      * Adds a inner join to the query
      *
      * @param string $table The table name to join
-     * @param string $first
+     * @param string|null $first
      * @param string $operator
-     * @param string $second
+     * @param string|null $second
      * @param string $type
      * @return $this
-     * @see QueryBuilder::join
+     * @see FileModel::join
      */
-    public static function join(string $table, string $first = null, string $operator = '=', string $second = null, string $type = 'INNER')
+    public static function join(string $table, string $first = null, string $operator = '=', string $second = null, string $type = 'INNER'): self
     {
     }
 
@@ -515,9 +540,9 @@ class FileModel
      * @param string $operator
      * @param string|null $second
      * @return $this
-     * @see QueryBuilder::innerJoin
+     * @see FileModel::innerJoin
      */
-    public static function innerJoin(string $table, string $first = null, string $operator = '=', string $second = null)
+    public static function innerJoin(string $table, string $first = null, string $operator = '=', string $second = null): self
     {
     }
 
@@ -529,9 +554,9 @@ class FileModel
      * @param string $operator
      * @param string|null $second
      * @return $this
-     * @see QueryBuilder::leftJoin
+     * @see FileModel::leftJoin
      */
-    public static function leftJoin(string $table, string $first = null, string $operator = '=', string $second = null)
+    public static function leftJoin(string $table, string $first = null, string $operator = '=', string $second = null): self
     {
     }
 
@@ -543,9 +568,9 @@ class FileModel
      * @param string $operator
      * @param string|null $second
      * @return $this
-     * @see QueryBuilder::rightJoin
+     * @see FileModel::rightJoin
      */
-    public static function rightJoin(string $table, string $first = null, string $operator = '=', string $second = null)
+    public static function rightJoin(string $table, string $first = null, string $operator = '=', string $second = null): self
     {
     }
 
@@ -564,19 +589,19 @@ class FileModel
      * @param mixed|null $operator
      * @param mixed|null $value
      * @return $this
-     * @see QueryBuilder::where
+     * @see FileModel::where
      */
-    public static function where($column = null, $operator = null, $value = null)
+    public static function where($column = null, $operator = null, $value = null): self
     {
     }
 
     /**
-     * @param string $expression
+     * @param scalar $expression
      * @param mixed $params
      * @return $this
-     * @see QueryBuilder::whereRaw
+     * @see FileModel::whereRaw
      */
-    public static function whereRaw($expression, $params = [])
+    public static function whereRaw($expression, $params = null): self
     {
     }
 
@@ -584,9 +609,9 @@ class FileModel
      * @param string $column
      * @param array $params
      * @return $this
-     * @see QueryBuilder::whereBetween
+     * @see FileModel::whereBetween
      */
-    public static function whereBetween($column, array $params)
+    public static function whereBetween(string $column, array $params): self
     {
     }
 
@@ -594,9 +619,9 @@ class FileModel
      * @param string $column
      * @param array $params
      * @return $this
-     * @see QueryBuilder::orWhereBetween
+     * @see FileModel::whereNotBetween
      */
-    public static function orWhereBetween($column, array $params)
+    public static function whereNotBetween(string $column, array $params): self
     {
     }
 
@@ -604,9 +629,9 @@ class FileModel
      * @param string $column
      * @param array $params
      * @return $this
-     * @see QueryBuilder::whereNotBetween
+     * @see FileModel::whereIn
      */
-    public static function whereNotBetween($column, array $params)
+    public static function whereIn(string $column, array $params): self
     {
     }
 
@@ -614,37 +639,27 @@ class FileModel
      * @param string $column
      * @param array $params
      * @return $this
-     * @see QueryBuilder::whereIn
+     * @see FileModel::whereNotIn
      */
-    public static function whereIn($column, array $params)
-    {
-    }
-
-    /**
-     * @param string $column
-     * @param array $params
-     * @return $this
-     * @see QueryBuilder::whereNotIn
-     */
-    public static function whereNotIn($column, array $params)
+    public static function whereNotIn(string $column, array $params): self
     {
     }
 
     /**
      * @param string $column
      * @return $this
-     * @see QueryBuilder::whereNull
+     * @see FileModel::whereNull
      */
-    public static function whereNull($column)
+    public static function whereNull(string $column): self
     {
     }
 
     /**
      * @param string $column
      * @return $this
-     * @see QueryBuilder::whereNotNULL
+     * @see FileModel::whereNotNull
      */
-    public static function whereNotNULL($column)
+    public static function whereNotNull(string $column): self
     {
     }
 
@@ -653,9 +668,9 @@ class FileModel
      * @param mixed $opOrValue
      * @param mixed|null $value
      * @return $this
-     * @see QueryBuilder::whereDate
+     * @see FileModel::whereDate
      */
-    public static function whereDate($column, $opOrValue, $value = null)
+    public static function whereDate(string $column, $opOrValue, $value = null): self
     {
     }
 
@@ -664,9 +679,9 @@ class FileModel
      * @param mixed $opOrValue
      * @param mixed|null $value
      * @return $this
-     * @see QueryBuilder::whereMonth
+     * @see FileModel::whereMonth
      */
-    public static function whereMonth($column, $opOrValue, $value = null)
+    public static function whereMonth(string $column, $opOrValue, $value = null): self
     {
     }
 
@@ -675,9 +690,9 @@ class FileModel
      * @param mixed $opOrValue
      * @param mixed|null $value
      * @return $this
-     * @see QueryBuilder::whereDay
+     * @see FileModel::whereDay
      */
-    public static function whereDay($column, $opOrValue, $value = null)
+    public static function whereDay(string $column, $opOrValue, $value = null): self
     {
     }
 
@@ -686,9 +701,9 @@ class FileModel
      * @param mixed $opOrValue
      * @param mixed|null $value
      * @return $this
-     * @see QueryBuilder::whereYear
+     * @see FileModel::whereYear
      */
-    public static function whereYear($column, $opOrValue, $value = null)
+    public static function whereYear(string $column, $opOrValue, $value = null): self
     {
     }
 
@@ -697,20 +712,20 @@ class FileModel
      * @param mixed $opOrValue
      * @param mixed|null $value
      * @return $this
-     * @see QueryBuilder::whereTime
+     * @see FileModel::whereTime
      */
-    public static function whereTime($column, $opOrValue, $value = null)
+    public static function whereTime(string $column, $opOrValue, $value = null): self
     {
     }
 
     /**
      * @param string $column
-     * @param string $opOrColumn2
-     * @param string|null $column2
+     * @param mixed $opOrColumn2
+     * @param mixed|null $column2
      * @return $this
-     * @see QueryBuilder::whereColumn
+     * @see FileModel::whereColumn
      */
-    public static function whereColumn($column, $opOrColumn2, $column2 = null)
+    public static function whereColumn(string $column, $opOrColumn2, $column2 = null): self
     {
     }
 
@@ -718,23 +733,46 @@ class FileModel
      * 搜索字段是否包含某个值
      *
      * @param string $column
-     * @param string $value
+     * @param mixed $value
      * @param string $condition
      * @return $this
-     * @see QueryBuilder::whereContains
+     * @see FileModel::whereContains
      */
-    public static function whereContains($column, $value, string $condition = 'AND')
+    public static function whereContains(string $column, $value, string $condition = 'AND'): self
     {
     }
 
     /**
-     * @param mixed $column
+     * @param string $column
      * @param mixed $value
      * @param string $condition
      * @return $this
-     * @see QueryBuilder::whereNotContains
+     * @see FileModel::whereNotContains
      */
-    public static function whereNotContains($column, $value, string $condition = 'OR')
+    public static function whereNotContains(string $column, $value, string $condition = 'OR'): self
+    {
+    }
+
+    /**
+     * Search whether a column has a value other than the default value
+     *
+     * @param string $column
+     * @param bool $has
+     * @return $this
+     * @see FileModel::whereHas
+     */
+    public static function whereHas(string $column, bool $has = true): self
+    {
+    }
+
+    /**
+     * Search whether a column dont have a value other than the default value
+     *
+     * @param string $column
+     * @return $this
+     * @see FileModel::whereNotHas
+     */
+    public static function whereNotHas(string $column): self
     {
     }
 
@@ -744,9 +782,9 @@ class FileModel
      *
      * @param mixed $column the grouping column
      * @return $this
-     * @see QueryBuilder::groupBy
+     * @see FileModel::groupBy
      */
-    public static function groupBy($column)
+    public static function groupBy($column): self
     {
     }
 
@@ -759,9 +797,9 @@ class FileModel
      * @param mixed|null $value
      * @param mixed $condition
      * @return $this
-     * @see QueryBuilder::having
+     * @see FileModel::having
      */
-    public static function having($column, $operator, $value = null, $condition = 'AND')
+    public static function having($column, $operator, $value = null, $condition = 'AND'): self
     {
     }
 
@@ -772,9 +810,9 @@ class FileModel
      * @param string $column the ordering expression
      * @param string $order the ordering direction
      * @return $this
-     * @see QueryBuilder::orderBy
+     * @see FileModel::orderBy
      */
-    public static function orderBy($column, $order = 'ASC')
+    public static function orderBy(string $column, $order = 'ASC'): self
     {
     }
 
@@ -783,9 +821,9 @@ class FileModel
      *
      * @param string $field The name of field
      * @return $this
-     * @see QueryBuilder::desc
+     * @see FileModel::desc
      */
-    public static function desc($field)
+    public static function desc(string $field): self
     {
     }
 
@@ -794,45 +832,34 @@ class FileModel
      *
      * @param string $field The name of field
      * @return $this
-     * @see QueryBuilder::asc
+     * @see FileModel::asc
      */
-    public static function asc($field)
-    {
-    }
-
-    /**
-     * Reset single SQL part
-     *
-     * @param string $name
-     * @return $this
-     * @see QueryBuilder::resetSqlPart
-     */
-    public static function resetSqlPart($name)
+    public static function asc(string $field): self
     {
     }
 
     /**
      * @return $this
-     * @see QueryBuilder::forUpdate
+     * @see FileModel::forUpdate
      */
-    public static function forUpdate()
+    public static function forUpdate(): self
     {
     }
 
     /**
      * @return $this
-     * @see QueryBuilder::forShare
+     * @see FileModel::forShare
      */
-    public static function forShare()
+    public static function forShare(): self
     {
     }
 
     /**
      * @param string|bool $lock
      * @return $this
-     * @see QueryBuilder::lock
+     * @see FileModel::lock
      */
-    public static function lock($lock)
+    public static function lock($lock): self
     {
     }
 
@@ -841,9 +868,9 @@ class FileModel
      * @param callable $callback
      * @param callable|null $default
      * @return $this
-     * @see QueryBuilder::when
+     * @see FileModel::when
      */
-    public static function when($value, $callback, callable $default = null)
+    public static function when($value, callable $callback, callable $default = null): self
     {
     }
 
@@ -852,38 +879,62 @@ class FileModel
      * @param callable $callback
      * @param callable|null $default
      * @return $this
-     * @see QueryBuilder::unless
+     * @see FileModel::unless
      */
-    public static function unless($value, callable $callback, callable $default = null)
+    public static function unless($value, callable $callback, callable $default = null): self
     {
     }
 
     /**
-     * @param callable $converter
+     * @param callable|null $converter
      * @return $this
-     * @see QueryBuilder::setDbKeyConverter
+     * @see FileModel::setDbKeyConverter
      */
-    public static function setInputIdentifierConverter(callable $converter)
+    public static function setDbKeyConverter(callable $converter = null): self
+    {
+    }
+
+    /**
+     * @param callable|null $converter
+     * @return $this
+     * @see FileModel::setPhpKeyConverter
+     */
+    public static function setPhpKeyConverter(callable $converter = null): self
     {
     }
 
     /**
      * Set or remove cache time for the query
      *
-     * @param false|int|null $seconds
+     * @param int|null $seconds
      * @return $this
-     * @see QueryBuilder::cache
+     * @see FileModel::setCacheTime
      */
-    public static function cache($seconds = null)
+    public static function setCacheTime(?int $seconds): self
     {
     }
 
     /**
      * @param array|string|true $scopes
      * @return $this
-     * @see Model::unscoped
+     * @see FileModel::unscoped
      */
-    public static function unscoped($scopes = [])
+    public static function unscoped($scopes = []): self
+    {
+    }
+
+    /**
+     * Check if the model method defines the "Relation" attribute (or the "@Relation" tag in doc comment)
+     *
+     * This method only checks whether the specified method has the "Relation" attribute,
+     * and does not check the actual logic.
+     * It is provided for external use to avoid directly calling `$this->$relation()` to cause attacks.
+     *
+     * @param string $method
+     * @return bool
+     * @see FileModel::isRelation
+     */
+    public static function isRelation(string $method): bool
     {
     }
 }
@@ -952,25 +1003,25 @@ class File
 class FileModel
 {
     /**
+     * Set each attribute value, without checking whether the column is fillable, and save the model
+     *
+     * @param iterable $attributes
+     * @return $this
+     * @see FileModel::saveAttributes
+     */
+    public function saveAttributes(iterable $attributes = []): self
+    {
+    }
+
+    /**
      * Returns the record data as array
      *
      * @param array|callable $returnFields A indexed array specified the fields to return
      * @param callable|null $prepend
      * @return array
-     * @see Model::toArray
+     * @see FileModel::toArray
      */
-    public function toArray($returnFields = [], callable $prepend = null)
-    {
-    }
-
-    /**
-     * 不经过fillable检查,设置数据并保存
-     *
-     * @param array $data
-     * @return $this
-     * @see Model::saveData
-     */
-    public function saveData($data = [])
+    public function toArray($returnFields = [], callable $prepend = null): array
     {
     }
 
@@ -979,9 +1030,9 @@ class FileModel
      *
      * @param array $merge
      * @return Ret
-     * @see Model::toRet
+     * @see FileModel::toRet
      */
-    public function toRet(array $merge = [])
+    public function toRet(array $merge = []): \Wei\Ret
     {
     }
 
@@ -989,31 +1040,31 @@ class FileModel
      * Return the record table name
      *
      * @return string
-     * @see Model::getTable
+     * @see FileModel::getTable
      */
-    public function getTable()
+    public function getTable(): string
     {
     }
 
     /**
      * Import a PHP array in this record
      *
-     * @param array|\ArrayAccess $data
+     * @param iterable $array
      * @return $this
-     * @see Model::fromArray
+     * @see FileModel::fromArray
      */
-    public function fromArray($data)
+    public function fromArray(iterable $array): self
     {
     }
 
     /**
      * Save the record or data to database
      *
-     * @param array $data
+     * @param iterable $attributes
      * @return $this
-     * @see Model::save
+     * @see FileModel::save
      */
-    public function save($data = [])
+    public function save(iterable $attributes = []): self
     {
     }
 
@@ -1022,22 +1073,22 @@ class FileModel
      *
      * @param int|string $id
      * @return $this
-     * @see Model::destroy
+     * @see FileModel::destroy
      */
-    public function destroy($id = null)
+    public function destroy($id = null): self
     {
     }
 
     /**
      * Set the record field value
      *
-     * @param string $name
+     * @param string|int $name
      * @param mixed $value
      * @param bool $throwException
      * @return $this|false
-     * @see Model::set
+     * @see FileModel::set
      */
-    public function set($name, $value = null, $throwException = true)
+    public function set($name, $value, bool $throwException = true)
     {
     }
 
@@ -1046,9 +1097,9 @@ class FileModel
      *
      * @param int|string|array|null $id
      * @return $this|null
-     * @see Model::find
+     * @see FileModel::find
      */
-    public function find($id)
+    public function find($id): ?self
     {
     }
 
@@ -1058,43 +1109,43 @@ class FileModel
      * @param int|string $id
      * @return $this
      * @throws \Exception
-     * @see Model::findOrFail
+     * @see FileModel::findOrFail
      */
-    public function findOrFail($id)
+    public function findOrFail($id): self
     {
     }
 
     /**
-     * Find a record by primary key, or init with the specified data if record not found
+     * Find a record by primary key, or init with the specified attributes if record not found
      *
      * @param int|string $id
-     * @param array|object $data
+     * @param array|object $attributes
      * @return $this
-     * @see Model::findOrInit
+     * @see FileModel::findOrInit
      */
-    public function findOrInit($id = null, $data = [])
+    public function findOrInit($id = null, $attributes = []): self
     {
     }
 
     /**
-     * Find a record by primary key, or save with the specified data if record not found
+     * Find a record by primary key, or save with the specified attributes if record not found
      *
      * @param int|string $id
-     * @param array $data
+     * @param array $attributes
      * @return $this
-     * @see Model::findOrCreate
+     * @see FileModel::findOrCreate
      */
-    public function findOrCreate($id, $data = [])
+    public function findOrCreate($id, $attributes = []): self
     {
     }
 
     /**
      * @param array $attributes
-     * @param array $data
+     * @param array|object $data
      * @return $this
-     * @see Model::findByOrCreate
+     * @see FileModel::findByOrCreate
      */
-    public function findByOrCreate($attributes, $data = [])
+    public function findByOrCreate($attributes, $data = []): self
     {
     }
 
@@ -1103,9 +1154,9 @@ class FileModel
      *
      * @param array $ids
      * @return $this|$this[]
-     * @see Model::findAll
+     * @see FileModel::findAll
      */
-    public function findAll($ids)
+    public function findAll(array $ids): self
     {
     }
 
@@ -1114,9 +1165,9 @@ class FileModel
      * @param mixed|null $operator
      * @param mixed|null $value
      * @return $this|null
-     * @see Model::findBy
+     * @see FileModel::findBy
      */
-    public function findBy($column, $operator = null, $value = null)
+    public function findBy($column, $operator = null, $value = null): ?self
     {
     }
 
@@ -1125,9 +1176,9 @@ class FileModel
      * @param mixed|null $operator
      * @param mixed|null $value
      * @return $this|$this[]
-     * @see Model::findAllBy
+     * @see FileModel::findAllBy
      */
-    public function findAllBy($column, $operator = null, $value = null)
+    public function findAllBy($column, $operator = null, $value = null): self
     {
     }
 
@@ -1135,9 +1186,9 @@ class FileModel
      * @param array $attributes
      * @param array|object $data
      * @return $this
-     * @see Model::findOrInitBy
+     * @see FileModel::findOrInitBy
      */
-    public function findOrInitBy($attributes, $data = [])
+    public function findOrInitBy(array $attributes, $data = []): self
     {
     }
 
@@ -1149,19 +1200,19 @@ class FileModel
      * @param mixed|null $value
      * @return $this
      * @throws \Exception
-     * @see Model::findByOrFail
+     * @see FileModel::findByOrFail
      */
-    public function findByOrFail($column, $operator = null, $value = null)
+    public function findByOrFail($column, $operator = null, $value = null): self
     {
     }
 
     /**
-     * @param array|Req|null $req
+     * @param Req|null $req
      * @return $this
      * @throws \Exception
-     * @see Model::findFromReq
+     * @see FileModel::findFromReq
      */
-    public function findFromReq($req = null)
+    public function findFromReq(\Wei\Req $req = null): self
     {
     }
 
@@ -1169,36 +1220,49 @@ class FileModel
      * Executes the generated SQL and returns the found record object or null if not found
      *
      * @return $this|null
-     * @see Model::first
+     * @see FileModel::first
      */
-    public function first()
+    public function first(): ?self
     {
     }
 
     /**
-     * @return $this|$this[]|array
-     * @see Model::all
+     * @return $this|$this[]
+     * @see FileModel::all
      */
-    public function all()
+    public function all(): self
     {
     }
 
     /**
+     * Coll: Specifies a field to be the key of the fetched array
+     *
      * @param string $column
      * @return $this
-     * @see Model::indexBy
+     * @see FileModel::indexBy
      */
-    public function indexBy($column)
+    public function indexBy(string $column): self
     {
     }
 
     /**
-     * Returns the name of fields of current table
+     * Returns the name of columns of current table
      *
      * @return array
-     * @see QueryBuilder::getColumns
+     * @see FileModel::getColumns
      */
-    public function getFields()
+    public function getColumns(): array
+    {
+    }
+
+    /**
+     * Check if column name exists
+     *
+     * @param string|int|null $name
+     * @return bool
+     * @see FileModel::hasColumn
+     */
+    public function hasColumn($name): bool
     {
     }
 
@@ -1209,9 +1273,9 @@ class FileModel
      * @param mixed|null $operator
      * @param mixed|null $value
      * @return array|null
-     * @see QueryBuilder::fetch
+     * @see FileModel::fetch
      */
-    public function fetch($column = null, $operator = null, $value = null)
+    public function fetch($column = null, $operator = null, $value = null): ?array
     {
     }
 
@@ -1222,9 +1286,9 @@ class FileModel
      * @param mixed|null $operator
      * @param mixed|null $value
      * @return array
-     * @see QueryBuilder::fetchAll
+     * @see FileModel::fetchAll
      */
-    public function fetchAll($column = null, $operator = null, $value = null)
+    public function fetchAll($column = null, $operator = null, $value = null): array
     {
     }
 
@@ -1232,9 +1296,9 @@ class FileModel
      * @param string $column
      * @param string|null $index
      * @return array
-     * @see QueryBuilder::pluck
+     * @see FileModel::pluck
      */
-    public function pluck(string $column, string $index = null)
+    public function pluck(string $column, string $index = null): array
     {
     }
 
@@ -1242,9 +1306,9 @@ class FileModel
      * @param int $count
      * @param callable $callback
      * @return bool
-     * @see QueryBuilder::chunk
+     * @see FileModel::chunk
      */
-    public function chunk(int $count, callable $callback)
+    public function chunk(int $count, callable $callback): bool
     {
     }
 
@@ -1253,9 +1317,9 @@ class FileModel
      *
      * @param string $column
      * @return int
-     * @see QueryBuilder::cnt
+     * @see FileModel::cnt
      */
-    public function cnt($column = '*')
+    public function cnt($column = '*'): int
     {
     }
 
@@ -1265,9 +1329,9 @@ class FileModel
      * @param array|string $set
      * @param mixed $value
      * @return int
-     * @see QueryBuilder::update
+     * @see FileModel::update
      */
-    public function update($set = [], $value = null)
+    public function update($set = [], $value = null): int
     {
     }
 
@@ -1277,10 +1341,10 @@ class FileModel
      * @param mixed|null $column
      * @param mixed|null $operator
      * @param mixed|null $value
-     * @return mixed
-     * @see QueryBuilder::delete
+     * @return int
+     * @see FileModel::delete
      */
-    public function delete($column = null, $operator = null, $value = null)
+    public function delete($column = null, $operator = null, $value = null): int
     {
     }
 
@@ -1289,9 +1353,9 @@ class FileModel
      *
      * @param int|float|string $offset The first result to return
      * @return $this
-     * @see QueryBuilder::offset
+     * @see FileModel::offset
      */
-    public function offset($offset)
+    public function offset($offset): self
     {
     }
 
@@ -1300,9 +1364,9 @@ class FileModel
      *
      * @param int|float|string $limit The maximum number of results to retrieve
      * @return $this
-     * @see QueryBuilder::limit
+     * @see FileModel::limit
      */
-    public function limit($limit)
+    public function limit($limit): self
     {
     }
 
@@ -1311,9 +1375,9 @@ class FileModel
      *
      * @param int $page The page number
      * @return $this
-     * @see QueryBuilder::page
+     * @see FileModel::page
      */
-    public function page($page)
+    public function page($page): self
     {
     }
 
@@ -1323,7 +1387,7 @@ class FileModel
      *
      * @param array|string $columns the selection expressions
      * @return $this
-     * @see QueryBuilder::select
+     * @see FileModel::select
      */
     public function select($columns = ['*']): self
     {
@@ -1332,18 +1396,18 @@ class FileModel
     /**
      * @param array|string $columns
      * @return $this
-     * @see QueryBuilder::selectDistinct
+     * @see FileModel::selectDistinct
      */
-    public function selectDistinct($columns)
+    public function selectDistinct($columns): self
     {
     }
 
     /**
      * @param string $expression
      * @return $this
-     * @see QueryBuilder::selectRaw
+     * @see FileModel::selectRaw
      */
-    public function selectRaw($expression)
+    public function selectRaw($expression): self
     {
     }
 
@@ -1353,9 +1417,21 @@ class FileModel
      *
      * @param array|string $columns
      * @return $this
-     * @see QueryBuilder::selectExcept
+     * @see FileModel::selectExcept
      */
-    public function selectExcept($columns)
+    public function selectExcept($columns): self
+    {
+    }
+
+    /**
+     * Specifies an item of the main table that is to be returned in the query result.
+     * Default to all columns of the main table
+     *
+     * @param string $column
+     * @return $this
+     * @see FileModel::selectMain
+     */
+    public function selectMain(string $column = '*'): self
     {
     }
 
@@ -1365,9 +1441,9 @@ class FileModel
      * @param string $table
      * @param string|null $alias
      * @return $this
-     * @see QueryBuilder::from
+     * @see FileModel::from
      */
-    public function from($table, $alias = null): self
+    public function from(string $table, $alias = null): self
     {
     }
 
@@ -1375,7 +1451,7 @@ class FileModel
      * @param string $table
      * @param mixed|null $alias
      * @return $this
-     * @see QueryBuilder::table
+     * @see FileModel::table
      */
     public function table(string $table, $alias = null): self
     {
@@ -1385,14 +1461,14 @@ class FileModel
      * Adds a inner join to the query
      *
      * @param string $table The table name to join
-     * @param string $first
+     * @param string|null $first
      * @param string $operator
-     * @param string $second
+     * @param string|null $second
      * @param string $type
      * @return $this
-     * @see QueryBuilder::join
+     * @see FileModel::join
      */
-    public function join(string $table, string $first = null, string $operator = '=', string $second = null, string $type = 'INNER')
+    public function join(string $table, string $first = null, string $operator = '=', string $second = null, string $type = 'INNER'): self
     {
     }
 
@@ -1404,9 +1480,9 @@ class FileModel
      * @param string $operator
      * @param string|null $second
      * @return $this
-     * @see QueryBuilder::innerJoin
+     * @see FileModel::innerJoin
      */
-    public function innerJoin(string $table, string $first = null, string $operator = '=', string $second = null)
+    public function innerJoin(string $table, string $first = null, string $operator = '=', string $second = null): self
     {
     }
 
@@ -1418,9 +1494,9 @@ class FileModel
      * @param string $operator
      * @param string|null $second
      * @return $this
-     * @see QueryBuilder::leftJoin
+     * @see FileModel::leftJoin
      */
-    public function leftJoin(string $table, string $first = null, string $operator = '=', string $second = null)
+    public function leftJoin(string $table, string $first = null, string $operator = '=', string $second = null): self
     {
     }
 
@@ -1432,9 +1508,9 @@ class FileModel
      * @param string $operator
      * @param string|null $second
      * @return $this
-     * @see QueryBuilder::rightJoin
+     * @see FileModel::rightJoin
      */
-    public function rightJoin(string $table, string $first = null, string $operator = '=', string $second = null)
+    public function rightJoin(string $table, string $first = null, string $operator = '=', string $second = null): self
     {
     }
 
@@ -1453,19 +1529,19 @@ class FileModel
      * @param mixed|null $operator
      * @param mixed|null $value
      * @return $this
-     * @see QueryBuilder::where
+     * @see FileModel::where
      */
-    public function where($column = null, $operator = null, $value = null)
+    public function where($column = null, $operator = null, $value = null): self
     {
     }
 
     /**
-     * @param string $expression
+     * @param scalar $expression
      * @param mixed $params
      * @return $this
-     * @see QueryBuilder::whereRaw
+     * @see FileModel::whereRaw
      */
-    public function whereRaw($expression, $params = [])
+    public function whereRaw($expression, $params = null): self
     {
     }
 
@@ -1473,9 +1549,9 @@ class FileModel
      * @param string $column
      * @param array $params
      * @return $this
-     * @see QueryBuilder::whereBetween
+     * @see FileModel::whereBetween
      */
-    public function whereBetween($column, array $params)
+    public function whereBetween(string $column, array $params): self
     {
     }
 
@@ -1483,9 +1559,9 @@ class FileModel
      * @param string $column
      * @param array $params
      * @return $this
-     * @see QueryBuilder::orWhereBetween
+     * @see FileModel::whereNotBetween
      */
-    public function orWhereBetween($column, array $params)
+    public function whereNotBetween(string $column, array $params): self
     {
     }
 
@@ -1493,9 +1569,9 @@ class FileModel
      * @param string $column
      * @param array $params
      * @return $this
-     * @see QueryBuilder::whereNotBetween
+     * @see FileModel::whereIn
      */
-    public function whereNotBetween($column, array $params)
+    public function whereIn(string $column, array $params): self
     {
     }
 
@@ -1503,37 +1579,27 @@ class FileModel
      * @param string $column
      * @param array $params
      * @return $this
-     * @see QueryBuilder::whereIn
+     * @see FileModel::whereNotIn
      */
-    public function whereIn($column, array $params)
-    {
-    }
-
-    /**
-     * @param string $column
-     * @param array $params
-     * @return $this
-     * @see QueryBuilder::whereNotIn
-     */
-    public function whereNotIn($column, array $params)
+    public function whereNotIn(string $column, array $params): self
     {
     }
 
     /**
      * @param string $column
      * @return $this
-     * @see QueryBuilder::whereNull
+     * @see FileModel::whereNull
      */
-    public function whereNull($column)
+    public function whereNull(string $column): self
     {
     }
 
     /**
      * @param string $column
      * @return $this
-     * @see QueryBuilder::whereNotNULL
+     * @see FileModel::whereNotNull
      */
-    public function whereNotNULL($column)
+    public function whereNotNull(string $column): self
     {
     }
 
@@ -1542,9 +1608,9 @@ class FileModel
      * @param mixed $opOrValue
      * @param mixed|null $value
      * @return $this
-     * @see QueryBuilder::whereDate
+     * @see FileModel::whereDate
      */
-    public function whereDate($column, $opOrValue, $value = null)
+    public function whereDate(string $column, $opOrValue, $value = null): self
     {
     }
 
@@ -1553,9 +1619,9 @@ class FileModel
      * @param mixed $opOrValue
      * @param mixed|null $value
      * @return $this
-     * @see QueryBuilder::whereMonth
+     * @see FileModel::whereMonth
      */
-    public function whereMonth($column, $opOrValue, $value = null)
+    public function whereMonth(string $column, $opOrValue, $value = null): self
     {
     }
 
@@ -1564,9 +1630,9 @@ class FileModel
      * @param mixed $opOrValue
      * @param mixed|null $value
      * @return $this
-     * @see QueryBuilder::whereDay
+     * @see FileModel::whereDay
      */
-    public function whereDay($column, $opOrValue, $value = null)
+    public function whereDay(string $column, $opOrValue, $value = null): self
     {
     }
 
@@ -1575,9 +1641,9 @@ class FileModel
      * @param mixed $opOrValue
      * @param mixed|null $value
      * @return $this
-     * @see QueryBuilder::whereYear
+     * @see FileModel::whereYear
      */
-    public function whereYear($column, $opOrValue, $value = null)
+    public function whereYear(string $column, $opOrValue, $value = null): self
     {
     }
 
@@ -1586,20 +1652,20 @@ class FileModel
      * @param mixed $opOrValue
      * @param mixed|null $value
      * @return $this
-     * @see QueryBuilder::whereTime
+     * @see FileModel::whereTime
      */
-    public function whereTime($column, $opOrValue, $value = null)
+    public function whereTime(string $column, $opOrValue, $value = null): self
     {
     }
 
     /**
      * @param string $column
-     * @param string $opOrColumn2
-     * @param string|null $column2
+     * @param mixed $opOrColumn2
+     * @param mixed|null $column2
      * @return $this
-     * @see QueryBuilder::whereColumn
+     * @see FileModel::whereColumn
      */
-    public function whereColumn($column, $opOrColumn2, $column2 = null)
+    public function whereColumn(string $column, $opOrColumn2, $column2 = null): self
     {
     }
 
@@ -1607,23 +1673,46 @@ class FileModel
      * 搜索字段是否包含某个值
      *
      * @param string $column
-     * @param string $value
+     * @param mixed $value
      * @param string $condition
      * @return $this
-     * @see QueryBuilder::whereContains
+     * @see FileModel::whereContains
      */
-    public function whereContains($column, $value, string $condition = 'AND')
+    public function whereContains(string $column, $value, string $condition = 'AND'): self
     {
     }
 
     /**
-     * @param mixed $column
+     * @param string $column
      * @param mixed $value
      * @param string $condition
      * @return $this
-     * @see QueryBuilder::whereNotContains
+     * @see FileModel::whereNotContains
      */
-    public function whereNotContains($column, $value, string $condition = 'OR')
+    public function whereNotContains(string $column, $value, string $condition = 'OR'): self
+    {
+    }
+
+    /**
+     * Search whether a column has a value other than the default value
+     *
+     * @param string $column
+     * @param bool $has
+     * @return $this
+     * @see FileModel::whereHas
+     */
+    public function whereHas(string $column, bool $has = true): self
+    {
+    }
+
+    /**
+     * Search whether a column dont have a value other than the default value
+     *
+     * @param string $column
+     * @return $this
+     * @see FileModel::whereNotHas
+     */
+    public function whereNotHas(string $column): self
     {
     }
 
@@ -1633,9 +1722,9 @@ class FileModel
      *
      * @param mixed $column the grouping column
      * @return $this
-     * @see QueryBuilder::groupBy
+     * @see FileModel::groupBy
      */
-    public function groupBy($column)
+    public function groupBy($column): self
     {
     }
 
@@ -1648,9 +1737,9 @@ class FileModel
      * @param mixed|null $value
      * @param mixed $condition
      * @return $this
-     * @see QueryBuilder::having
+     * @see FileModel::having
      */
-    public function having($column, $operator, $value = null, $condition = 'AND')
+    public function having($column, $operator, $value = null, $condition = 'AND'): self
     {
     }
 
@@ -1661,9 +1750,9 @@ class FileModel
      * @param string $column the ordering expression
      * @param string $order the ordering direction
      * @return $this
-     * @see QueryBuilder::orderBy
+     * @see FileModel::orderBy
      */
-    public function orderBy($column, $order = 'ASC')
+    public function orderBy(string $column, $order = 'ASC'): self
     {
     }
 
@@ -1672,9 +1761,9 @@ class FileModel
      *
      * @param string $field The name of field
      * @return $this
-     * @see QueryBuilder::desc
+     * @see FileModel::desc
      */
-    public function desc($field)
+    public function desc(string $field): self
     {
     }
 
@@ -1683,45 +1772,34 @@ class FileModel
      *
      * @param string $field The name of field
      * @return $this
-     * @see QueryBuilder::asc
+     * @see FileModel::asc
      */
-    public function asc($field)
-    {
-    }
-
-    /**
-     * Reset single SQL part
-     *
-     * @param string $name
-     * @return $this
-     * @see QueryBuilder::resetSqlPart
-     */
-    public function resetSqlPart($name)
+    public function asc(string $field): self
     {
     }
 
     /**
      * @return $this
-     * @see QueryBuilder::forUpdate
+     * @see FileModel::forUpdate
      */
-    public function forUpdate()
+    public function forUpdate(): self
     {
     }
 
     /**
      * @return $this
-     * @see QueryBuilder::forShare
+     * @see FileModel::forShare
      */
-    public function forShare()
+    public function forShare(): self
     {
     }
 
     /**
      * @param string|bool $lock
      * @return $this
-     * @see QueryBuilder::lock
+     * @see FileModel::lock
      */
-    public function lock($lock)
+    public function lock($lock): self
     {
     }
 
@@ -1730,9 +1808,9 @@ class FileModel
      * @param callable $callback
      * @param callable|null $default
      * @return $this
-     * @see QueryBuilder::when
+     * @see FileModel::when
      */
-    public function when($value, $callback, callable $default = null)
+    public function when($value, callable $callback, callable $default = null): self
     {
     }
 
@@ -1741,38 +1819,62 @@ class FileModel
      * @param callable $callback
      * @param callable|null $default
      * @return $this
-     * @see QueryBuilder::unless
+     * @see FileModel::unless
      */
-    public function unless($value, callable $callback, callable $default = null)
+    public function unless($value, callable $callback, callable $default = null): self
     {
     }
 
     /**
-     * @param callable $converter
+     * @param callable|null $converter
      * @return $this
-     * @see QueryBuilder::setDbKeyConverter
+     * @see FileModel::setDbKeyConverter
      */
-    public function setInputIdentifierConverter(callable $converter)
+    public function setDbKeyConverter(callable $converter = null): self
+    {
+    }
+
+    /**
+     * @param callable|null $converter
+     * @return $this
+     * @see FileModel::setPhpKeyConverter
+     */
+    public function setPhpKeyConverter(callable $converter = null): self
     {
     }
 
     /**
      * Set or remove cache time for the query
      *
-     * @param false|int|null $seconds
+     * @param int|null $seconds
      * @return $this
-     * @see QueryBuilder::cache
+     * @see FileModel::setCacheTime
      */
-    public function cache($seconds = null)
+    public function setCacheTime(?int $seconds): self
     {
     }
 
     /**
      * @param array|string|true $scopes
      * @return $this
-     * @see Model::unscoped
+     * @see FileModel::unscoped
      */
-    public function unscoped($scopes = [])
+    public function unscoped($scopes = []): self
+    {
+    }
+
+    /**
+     * Check if the model method defines the "Relation" attribute (or the "@Relation" tag in doc comment)
+     *
+     * This method only checks whether the specified method has the "Relation" attribute,
+     * and does not check the actual logic.
+     * It is provided for external use to avoid directly calling `$this->$relation()` to cause attacks.
+     *
+     * @param string $method
+     * @return bool
+     * @see FileModel::isRelation
+     */
+    public function isRelation(string $method): bool
     {
     }
 }

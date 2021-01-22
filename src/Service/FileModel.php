@@ -10,6 +10,7 @@ use Miaoxing\Plugin\Service\Model;
 
 class FileModel extends BaseModel
 {
+    use ModelTrait;
     use FileTrait;
     use HasAppIdTrait;
 }
