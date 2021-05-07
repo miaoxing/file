@@ -4,11 +4,12 @@ namespace Miaoxing\File\Service;
 
 use Miaoxing\Plugin\BaseService;
 use Miaoxing\Plugin\Service\Ret;
+use Wei\Upload;
 
 /**
  * @mixin \LoggerMixin
  * @mixin \AppMixin
- * @mixin \UploadMixin
+ * @property Upload $upload （phpstan）不用 UploadMixin 以免和 upload 方法冲突
  */
 class File extends BaseService
 {
