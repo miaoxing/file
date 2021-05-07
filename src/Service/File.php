@@ -61,7 +61,7 @@ class File extends BaseService
         if (isset($ret['pathName'])) {
             $path = $ret['pathName'];
         } else {
-            $path = parse_url($ret['url'], PHP_URL_PATH);
+            $path = parse_url($ret['url'], \PHP_URL_PATH);
             $path = ltrim($path, '/');
         }
 
@@ -118,8 +118,8 @@ class File extends BaseService
         /** @var File $service */
         $service = $this->wei->get($this->driver);
 
-        if ($customName === true) {
-            $customName = $this->generateName() . '.' . ($ext ? $ext : $this->getExt($file));
+        if (true === $customName) {
+            $customName = $this->generateName() . '.' . ($ext ?: $this->getExt($file));
         }
 
         // 2. 写入到存储服务中
@@ -206,7 +206,7 @@ class File extends BaseService
      */
     public function downloadIfRemote($file, $ext = '', $path = '', $customName = '')
     {
-        $host = parse_url($file, PHP_URL_HOST);
+        $host = parse_url($file, \PHP_URL_HOST);
         if ($host) {
             $file = $this->download($file, $ext, $path, $customName);
         }
@@ -224,7 +224,7 @@ class File extends BaseService
     public function downloadOnDemand($file, $ext = '')
     {
         // 1. 如果是/开头,认为是当前目录中的素材
-        if ($file[0] == '/') {
+        if ('/' == $file[0]) {
             $file = ltrim($file, '/');
 
             return $file;
@@ -315,9 +315,9 @@ class File extends BaseService
     public function getExt($file, $default = 'jpg')
     {
         // 如果是远程文件,可能带有请求参数?xxx=xxx
-        $file = parse_url($file, PHP_URL_PATH);
+        $file = parse_url($file, \PHP_URL_PATH);
         $pos = strrpos($file, '.');
-        if ($pos !== false) {
+        if (false !== $pos) {
             return strtolower(substr($file, $pos + 1));
         } else {
             return $default;
@@ -332,7 +332,7 @@ class File extends BaseService
      */
     public function getFileName($file)
     {
-        return end(explode('/', parse_url($file, PHP_URL_PATH)));
+        return end(explode('/', parse_url($file, \PHP_URL_PATH)));
     }
 
     /**
@@ -351,7 +351,7 @@ class File extends BaseService
      */
     public function isImageExt($ext)
     {
-        return in_array($ext, $this->imageExts);
+        return in_array($ext, $this->imageExts, true);
     }
 
     /**
@@ -362,7 +362,7 @@ class File extends BaseService
      */
     public function isVoiceExt($ext)
     {
-        return in_array($ext, $this->voiceExts);
+        return in_array($ext, $this->voiceExts, true);
     }
 
     /**
