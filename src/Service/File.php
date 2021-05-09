@@ -13,13 +13,13 @@ use Wei\Upload;
  */
 class File extends BaseService
 {
-    const TYPE_IMAGE = 1;
+    public const TYPE_IMAGE = 1;
 
-    const TYPE_DOC = 2;
+    public const TYPE_DOC = 2;
 
-    const TYPE_VOICE = 3;
+    public const TYPE_VOICE = 3;
 
-    const TYPE_VIDEO = 4;
+    public const TYPE_VIDEO = 4;
 
     /**
      * 文件上传服务
