@@ -9,6 +9,7 @@ use Wei\Upload;
 /**
  * @mixin \LoggerMixin
  * @mixin \AppMixin
+ * @mixin \ReqMixin
  * @property Upload $upload （phpstan）不用 UploadMixin 以免和 upload 方法冲突
  */
 class File extends BaseService
@@ -163,6 +164,7 @@ class File extends BaseService
 
         $localFile = $this->transform($file, $ext, $localFile);
         $url = $this->getFileUrl($localFile);
+        $url = $this->req->getUrlFor($url);
 
         return suc([
             'message' => '上传成功',
