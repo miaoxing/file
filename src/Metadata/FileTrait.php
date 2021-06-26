@@ -3,7 +3,7 @@
 namespace Miaoxing\File\Metadata;
 
 /**
- * @property int $id
+ * @property int|null $id
  * @property int $appId
  * @property string $origName
  * @property string $path
