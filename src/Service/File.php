@@ -335,7 +335,8 @@ class File extends BaseService
      */
     public function getFileName($file)
     {
-        return end(explode('/', parse_url($file, \PHP_URL_PATH)));
+        $parts = explode('/', parse_url($file, \PHP_URL_PATH));
+        return end($parts);
     }
 
     /**
