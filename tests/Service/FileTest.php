@@ -16,8 +16,8 @@ class FileTest extends BaseTestCase
                 'servers' => [
                     'HTTPS' => 'on',
                     'HTTP_HOST' => 'test.com',
-                ]
-            ])
+                ],
+            ]),
         ]);
 
         $ret = $file->write('public/test.jpg');
