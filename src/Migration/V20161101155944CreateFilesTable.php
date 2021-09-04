@@ -12,7 +12,7 @@ class V20161101155944CreateFilesTable extends BaseMigration
     public function up()
     {
         $this->schema->table('files')
-            ->id()
+            ->bigId()
             ->uInt('app_id')
             ->string('orig_name', 64)
             ->string('path')
