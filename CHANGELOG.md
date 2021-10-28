@@ -1,3 +1,20 @@
+## [0.1.13](https://github.com/miaoxing/file/compare/v0.1.12...v0.1.13) (2021-10-28)
+
+
+### Bug Fixes
+
+* **file:** 上传后返回完整 URL 地址，以便提供给外部使用 ([d44f26b](https://github.com/miaoxing/file/commit/d44f26bac79d55036a5ede89bb7d763c0a4a2917))
+* **File:** Only variables can be passed by reference ([5fc5597](https://github.com/miaoxing/file/commit/5fc55978232539e3f901323b3922c37cf00fb811))
+
+
+
+
+
+### Dependencies
+
+* **@miaoxing/app:** upgrade from `0.3.3` to `0.4.0`
+* **@miaoxing/dev:** upgrade from `7.0.1` to `8.0.0`
+
 ## [0.1.12](https://github.com/miaoxing/file/compare/v0.1.11...v0.1.12) (2021-05-21)
 
 
