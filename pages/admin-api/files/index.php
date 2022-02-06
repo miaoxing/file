@@ -3,22 +3,21 @@
 use Miaoxing\File\Service\File;
 use Miaoxing\Plugin\BaseController;
 use Wei\Req;
+use Wei\Upload;
 
 return new class () extends BaseController {
     public function post(Req $req)
     {
-        /** @var \Wei\Upload $upload */
-        $upload = wei()->upload;
-        $result = $upload([
+        $ret = Upload::save([
             'name' => 'image' === $req['type'] ? '图片' : '文件',
             'exts' => 'image' === $req['type'] ? File::getImageExts() : File::getAllExts(),
             'dir' => File::getUploadDir(),
             'fileName' => File::getUploadName(),
         ]);
-        if (!$result) {
-            return err($upload->getFirstMessage());
+        if ($ret->isErr()) {
+            return $ret;
         }
 
-        return File::upload($upload->getFile());
+        return File::upload($ret->get('file'));
     }
 };
