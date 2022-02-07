@@ -1,23 +1,26 @@
 <?php
 
 /**
- * @property    Miaoxing\File\Service\File $file
+ * @property    Miaoxing\File\Service\File $file 处理文件相关逻辑
  */
-class FileMixin {
+class FileMixin
+{
 }
 
 /**
  * @property    Miaoxing\File\Service\FileModel $fileModel
  * @method      Miaoxing\File\Service\FileModel fileModel() 返回当前对象
  */
-class FileModelMixin {
+class FileModelMixin
+{
 }
 
 /**
  * @mixin FileMixin
  * @mixin FileModelMixin
  */
-class AutoCompletion {
+class AutoCompletion
+{
 }
 
 /**
@@ -25,7 +28,7 @@ class AutoCompletion {
  */
 function wei()
 {
-    return new AutoCompletion;
+    return new AutoCompletion();
 }
 
 /** @var Miaoxing\File\Service\File $file */

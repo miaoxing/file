@@ -10,14 +10,17 @@ return new class () extends BaseController {
     {
         $ret = Upload::save([
             'name' => 'image' === $req['type'] ? '图片' : '文件',
-            'exts' => 'image' === $req['type'] ? File::getImageExts() : File::getAllExts(),
-            'dir' => File::getUploadDir(),
-            'fileName' => File::getUploadName(),
+            'exts' => 'image' === $req['type'] ? File::getAllowedImageExts() : File::getAllowedExts(),
+            'dir' => File::generateDir(),
+            'fileName' => File::generateFileName(),
         ]);
         if ($ret->isErr()) {
             return $ret;
         }
 
-        return File::upload($ret->get('file'));
+        return File::saveLocal($ret['file'], [
+            'origName' => $ret['name'],
+            'size' => $ret['size'],
+        ]);
     }
 };
