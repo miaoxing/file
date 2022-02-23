@@ -194,7 +194,51 @@ class FileTest extends BaseTestCase
         $this->assertSame($attributes['url'], $ret['data']['url']);
     }
 
-    protected function createHttpMock()
+    public function testSaveRemoteImageHaveWidthAndHeight()
+    {
+        $image = imagecreate(1, 2);
+        imagecolorallocate($image, 0, 0, 0);
+        ob_start();
+        imagepng($image);
+        $content = ob_get_clean();
+        imagedestroy($image);
+
+        $http = $this->createHttpMock($content);
+
+        $file = $this->getServiceMock(File::class, [
+            'saveModel',
+            'generatePath',
+        ]);
+
+        $file->expects($this->once())
+            ->method('generatePath')
+            ->with('jpg')
+            ->willReturn('public/uploads/1/date/time-random.jpg');
+
+        $attributes = [
+            'ext' => 'jpg',
+            'origName' => 'test.jpg',
+            'size' => strlen($content),
+            'md5' => md5($content),
+            'type' => 1,
+            'path' => 'public/uploads/1/date/time-random.jpg',
+            'url' => 'http:///uploads/1/date/time-random.jpg',
+            'width' => 1,
+            'height' => 2,
+        ];
+        $file->expects($this->once())
+            ->method('saveModel')
+            ->with($attributes)
+            ->willReturn(FileModel::fromArray($attributes));
+
+        $file->http = $http;
+
+        $ret = $file->saveRemote('https://example.com/path/to/test.jpg');
+
+        $this->assertSame($attributes['url'], $ret['data']['url']);
+    }
+
+    protected function createHttpMock($content = 'content')
     {
         $http = $this->getServiceMock(Http::class, ['__invoke', 'isSuccess', 'getResponse']);
 
@@ -208,7 +252,7 @@ class FileTest extends BaseTestCase
 
         $http->expects($this->any())
             ->method('getResponse')
-            ->willReturn('content');
+            ->willReturn($content);
 
         return $http;
     }
