@@ -1,3 +1,23 @@
+# [0.2.0](https://github.com/miaoxing/file/compare/v0.1.15...v0.2.0) (2022-02-28)
+
+
+### Code Refactoring
+
+* **file:** 重写文件服务 ([c7f4cc0](https://github.com/miaoxing/file/commit/c7f4cc029d9c2c51651b7dc5f6ed0269c9b6be95))
+
+
+### BREAKING CHANGES
+
+* **file:** 重写文件服务
+
+
+
+
+
+### Dependencies
+
+* **@miaoxing/app:** upgrade from `0.5.1` to `0.6.0`
+
 ## [0.1.15](https://github.com/miaoxing/file/compare/v0.1.14...v0.1.15) (2022-02-05)
 
 
