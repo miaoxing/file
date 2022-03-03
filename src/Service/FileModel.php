@@ -6,12 +6,14 @@ use Miaoxing\File\Metadata\FileTrait;
 use Miaoxing\Plugin\BaseModel;
 use Miaoxing\Plugin\Model\HasAppIdTrait;
 use Miaoxing\Plugin\Model\ModelTrait;
+use Miaoxing\Plugin\Model\SnowflakeTrait;
 
 class FileModel extends BaseModel
 {
     use FileTrait;
     use HasAppIdTrait;
     use ModelTrait;
+    use SnowflakeTrait;
 
     public const TYPE_IMAGE = 1;
 
