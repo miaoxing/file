@@ -1,3 +1,24 @@
+# [0.3.0](https://github.com/miaoxing/file/compare/v0.2.0...v0.3.0) (2022-03-04)
+
+
+### Features
+
+* 数据表 `app_id` 字段由 `int` 升级到 `bigint` ([630d77c](https://github.com/miaoxing/file/commit/630d77c080234394b7693d8f22bab1bde2c29dc2))
+* **FileModel:** 模型通过 `SnowflakeTrait` 生成 id ([dd71691](https://github.com/miaoxing/file/commit/dd7169178814b51f355ba433f2fcf6a2c0749b4b))
+
+
+### BREAKING CHANGES
+
+* 数据表 `app_id` 字段由 `int` 升级到 `bigint`
+
+
+
+
+
+### Dependencies
+
+* **@miaoxing/app:** upgrade from `0.6.0` to `0.6.1`
+
 # [0.2.0](https://github.com/miaoxing/file/compare/v0.1.15...v0.2.0) (2022-02-28)
 
 
