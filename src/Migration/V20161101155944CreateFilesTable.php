@@ -13,7 +13,7 @@ class V20161101155944CreateFilesTable extends BaseMigration
     {
         $this->schema->table('files')
             ->bigId()
-            ->uInt('app_id')
+            ->uBigInt('app_id')
             ->string('orig_name', 64)
             ->string('path')
             ->uTinyInt('type')->comment('文件类型,1是图片,2是文档,3是音频,4是视频')
