@@ -158,7 +158,7 @@ class File extends BaseService
 
         $attributes = [
             'path' => $path,
-            'origName' => $options['origName'] ?? null,
+            'origName' => $this->truncate($options['origName'] ?? null, 64),
             'size' => $options['size'] ?? filesize($path),
             'md5' => $options['md5'] ?? md5_file($path),
             'ext' => $ext,
@@ -185,5 +185,16 @@ class File extends BaseService
     protected function saveModel(array $attributes): FileModel
     {
         return FileModel::saveAttributes($attributes);
+    }
+
+    /**
+     * @internal
+     */
+    protected function truncate(?string $str, int $length): ?string
+    {
+        if (mb_strlen($str) > $length) {
+            return mb_substr($str, 0, $length);
+        }
+        return $str;
     }
 }
