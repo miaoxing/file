@@ -1,3 +1,18 @@
+## [0.3.10](https://github.com/miaoxing/file/compare/v0.3.9...v0.3.10) (2022-12-01)
+
+
+### Bug Fixes
+
+* **file:** 上传文件名过长时截断，以免保存出错 ([f8bc345](https://github.com/miaoxing/file/commit/f8bc34539dda55656c4f43e4741e11c7140c503e))
+
+
+
+
+
+### Dependencies
+
+* **@miaoxing/app:** upgrade from `0.6.10` to `0.6.11`
+
 ## [0.3.9](https://github.com/miaoxing/file/compare/v0.3.8...v0.3.9) (2022-11-01)
 
 
