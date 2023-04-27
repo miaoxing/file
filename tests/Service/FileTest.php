@@ -5,7 +5,7 @@ namespace MiaoxingTest\File\Service;
 use Miaoxing\File\Service\File;
 use Miaoxing\File\Service\FileModel;
 use Miaoxing\Plugin\Test\BaseTestCase;
-use Miaoxing\Services\Service\Http;
+use Wei\Http;
 
 class FileTest extends BaseTestCase
 {

@@ -17,7 +17,7 @@ use Wei\Upload;
  * @mixin \ReqMixin
  * @mixin \FsMixin
  * @mixin \IsImageMixin
- * @mixin \HttpMixin
+ * @mixin \HttpPropMixin
  * @mixin \StorageMixin
  * @mixin \LocalStorageMixin
  * @property Upload $upload （phpstan）不用 UploadMixin 以免和 upload 方法冲突
@@ -63,7 +63,7 @@ class File extends BaseService
     protected function saveRemote(string $url, array $options = []): Ret
     {
         // 1. 获取远程文件
-        $http = $this->http([
+        $http = $this->http->request([
             'url' => $url,
             'timeout' => 10000,
             'referer' => true,
