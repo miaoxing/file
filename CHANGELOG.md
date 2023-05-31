@@ -1,3 +1,19 @@
+## [0.3.16](https://github.com/miaoxing/file/compare/v0.3.15...v0.3.16) (2023-05-31)
+
+
+### Features
+
+* **file:** 增加移动端上传文件接口 ([b496aa2](https://github.com/miaoxing/file/commit/b496aa289f8680bf9a737392952e83b2206b284c))
+
+
+
+
+
+### Dependencies
+
+* **@miaoxing/app:** upgrade from `0.7.2` to `0.7.3`
+* **@miaoxing/dev:** upgrade from `8.2.0` to `8.2.1`
+
 ## [0.3.15](https://github.com/miaoxing/file/compare/v0.3.14...v0.3.15) (2023-04-30)
 
 
