@@ -1,11 +1,11 @@
 <?php
 
 use Miaoxing\File\Service\File;
-use Miaoxing\Plugin\BaseController;
+use Miaoxing\Plugin\BasePage;
 use Miaoxing\Plugin\Service\Upload;
 use Wei\Req;
 
-return new class () extends BaseController {
+return new class () extends BasePage {
     public function post(Req $req)
     {
         $ret = Upload::save([
