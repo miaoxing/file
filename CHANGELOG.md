@@ -1,3 +1,18 @@
+## [0.3.21](https://github.com/miaoxing/file/compare/v0.3.20...v0.3.21) (2023-11-02)
+
+
+### Features
+
+* **file, experimental:** 增加 `upload` 接口，用于上传文件 ([5e79006](https://github.com/miaoxing/file/commit/5e79006e57b7010b15418c3f0bac27d2343ab9c1))
+
+
+
+
+
+### Dependencies
+
+* **@miaoxing/app:** upgrade from `0.7.7` to `0.7.8`
+
 ## [0.3.20](https://github.com/miaoxing/file/compare/v0.3.19...v0.3.20) (2023-09-30)
 
 
