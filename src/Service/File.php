@@ -105,7 +105,7 @@ class File extends BaseService
      *
      * @svc
      */
-    protected function generatePath(string $ext = null): string
+    protected function generatePath(?string $ext = null): string
     {
         return $this->getRoot()
             . '/' . date('Ymd')
@@ -116,7 +116,7 @@ class File extends BaseService
     /**
      * 根据扩展名称，获取文件类型
      */
-    protected function detectType(string $ext = null): int
+    protected function detectType(?string $ext = null): int
     {
         if (null === $ext) {
             return FileModel::TYPE_OTHERS;
