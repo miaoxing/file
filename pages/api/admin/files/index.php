@@ -5,7 +5,7 @@ use Miaoxing\Plugin\BasePage;
 use Miaoxing\Plugin\Service\Upload;
 use Wei\Req;
 
-return new class () extends BasePage {
+return new class extends BasePage {
     public function post(Req $req)
     {
         $ret = Upload::save([
