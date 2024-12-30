@@ -1,3 +1,19 @@
+## [0.3.38](https://github.com/miaoxing/file/compare/v0.3.37...v0.3.38) (2024-12-30)
+
+
+### Features
+
+* **file:** 后台管理员都允许上传文件 ([c25b950](https://github.com/miaoxing/file/commit/c25b950aa0a182c263edeb1b2f26e2e31605e3ac))
+
+
+
+
+
+### Dependencies
+
+* **@miaoxing/app:** upgrade from `0.10.7` to `0.10.8`
+* **@miaoxing/dev:** upgrade from `9.2.0` to `9.3.0`
+
 ## [0.3.37](https://github.com/miaoxing/file/compare/v0.3.36...v0.3.37) (2024-11-30)
 
 
